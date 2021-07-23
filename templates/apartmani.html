@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+
+    <title> .. * .. * . Super apartmani naj naj .. .</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/daxi.js"></script>
+
+    <!--
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    -->
+
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+   
+    <script>
+    // Global
+    var selected = -1;
+    var aps = {};
+
+    // Do the cosmetic 
+    function onresize() {
+      var w = document.documentElement.clientWidth;
+      var h = document.documentElement.clientHeight;
+      if (div = document.getElementById('mainvideo')) {
+         if (w > 600) {
+            div.style.left = '4px'; 
+            div.style.top = '46px'; 
+            if (w>1000) div.style.width = Math.floor(w/1.5).toString() + 'px';
+             else div.style.width = Math.floor(w/1.7).toString() + 'px';
+            div.style.height = (h - 82).toString() + 'px';
+            if (div2 = document.getElementById('mainvideo2')) {
+              div2.style.top = '44px';
+              div2.style.left = (div.clientWidth + 12) + 'px';
+              div2.style.width = (w - div.clientWidth - 36).toString() + 'px';
+              div2.style.height = (h - 65).toString() + 'px';
+           }
+         } else {
+           if (div2 = document.getElementById('mainvideo2')) {
+             var dh = Math.floor(h/2);
+             div.style.top = '46px'; 
+             div.style.left = '4px'; 
+             div.style.height = dh.toString() + 'px';
+             div2.style.left = '4px';
+             div2.style.top = (79 + dh).toString() + 'px';
+             div.style.width = (w - 40).toString() + 'px';
+             div2.style.width = (w - 30).toString() + 'px';
+             div2.style.height = (h - div.clientHeight - 70).toString() + 'px';
+           }
+         }
+      }
+    }
+
+   // Help ekrani
+
+   function openNav(tip) {
+      var elements = document.getElementsByClassName("overlay-content");
+      for(var x=0; x<elements.length; x++)
+      {
+         elements[x].style.visibility = 'hidden';
+         elements[x].style.height = '0px';
+      }
+      document.getElementById("myNav").style.padding = "8px";
+      document.getElementById("myNav").style.visibility = 'visible';
+      document.getElementById(tip).style.visibility = 'visible';
+      document.getElementById(tip).style.height = '100%';
+      document.getElementById("myNav").style.width = "100%";
+   }
+
+   function closeNav() {
+      var elements = document.getElementsByClassName("overlay-content");
+      document.getElementById("myNav").style.width = "0%";
+      document.getElementById("myNav").style.padding = "0px";
+   }
+
+   function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+   }
+
+
+
+   // . . . ..  Menu functions . . .. .
+   function apLoad() {
+      if (selected == -1) {
+         alert('Please select apartment!'); return -1;
+      }
+      openNav('ics');
+   }
+
+   function apDelete() {
+       if (selected == -1) {
+         alert('Please select apartment!'); return -1;
+      }
+      var r = confirm('Delete the apartment "' + aps[selected].name + '" ?');
+      if (r) {
+         var formValues = {id: selected};
+         $.post('/api/main/delete', formValues)
+              .done(function(data) {
+                 window.location.reload();
+              })
+              // Error
+              .fail(function(xhr, status, error) {
+                 // error handling
+                 alert(xhr.responseText);
+              });
+
+      }
+   }
+
+   function apCalendar(){
+       if (selected == -1) {
+         alert('Please select apartment!'); return -1;
+      }
+      openNav('cal');
+      $('#cal-error').show();
+   }
+
+   $(document).ready(function(){
+        // Screen setup
+        onresize();
+ 
+        var jwt = localStorage.getItem('jwtToken');
+        
+        // No JWT? Redirect to log in
+        if (!jwt) window.location.href = '/login';
+
+        // Add AUTH token header to all requests
+        $.ajaxSetup({
+           beforeSend: function(xhr) {
+             xhr.setRequestHeader('Authorization', 'Bearer ' + jwt);
+           }
+        });
+ 
+        // Load data (all apartments)
+        $.get('/api/main/load')
+
+             // Ok, show data
+            .done(function(data) {
+               $('#usr').html(data.user);
+
+               // Output apartments
+               var apcnt = 0;
+               $.each(data.apartments, function(k, v) {
+                  aps[v.id] = v;
+                  $('#yesap').append('<div id="' + v.id  + '" class="float-child"><img style="max-width:100; max-height:90%" src= "/static/images/' + v.image +  '"/><br/>' + v.name  + '</div>');
+                  apcnt++;
+               });
+
+               // Select handlers
+               $('.float-child').click(function() {
+                  $('.float-child').css('border-color', '');
+                  $(this).css('border-color', 'purple');
+                  selected = $(this).attr('id');
+                  $('#forap').html('.. . for apartment : <b>' + aps[selected].name + '</b> .. .' );
+               });  
+
+               // No apartments?
+               if (apcnt < 1) $('#noap').show();
+                else {
+                   $('#yesap').show();
+                }
+             })
+
+            // Error
+            .fail(function(xhr, status, error) {
+               // error handling
+               if (xhr.status == '401') window.location.href = '/login';
+               else alert(xhr.status);
+            });
+
+
+        // New apartment
+
+        $("#newfrm").on('submit', function(event){
+           event.preventDefault();
+           $("#new-error").hide();
+           $("#new-info").show();
+
+           var formValues = $(this).serialize();
+
+           // Random icon
+           var rnd_s = localStorage.getItem('rnd');
+           var rnd = getRandomInt(1,5);
+           while (rnd == rnd_s) rnd = getRandomInt(1,5);
+           var ico = 'house' + rnd + '.png';
+           formValues += '&image=' + ico;
+ 
+           $.post('/api/main/new', formValues)
+              .done(function(data) {
+                 rnd_s = localStorage.setItem('rnd', rnd);
+                 window.location.reload();
+              })
+              // Error
+              .fail(function(xhr, status, error) {
+                 // error handling
+                 $("#new-error").html(xhr.responseText);
+                 $("#new-info").hide();
+                 $("#new-error").show();
+              });
+        });
+
+        
+         
+   });
+
+    </script>
+
+  </head>
+  <body onresize="onresize();">
+    <!-- page content -->
+    <div class="header">
+      <div style="float:left">
+      <a href="/">
+      <img src="/static/images/baltazar.png" style="height:48px; margin-top:-3px; vertical-align:middle; "/>
+      </a>
+     </div>
+      <div style="float:left; padding-left:18px; padding-top:12px; overflow:hidden">
+
+
+      <div style="position:absolute; top:7px; left:74px">
+      <b> <span style="color:#eee">.. </span><span style="color:#eaeaea">*. * </span>Welcome, <span id="usr"></span> .. .</b>
+      </div>
+
+      </div>
+      <div style="position:absolute; right:20px;"> 
+   
+<!--   Ako smo ulogirani - prikazujemo menu
+
+       <div class="dropdown">
+       <img src="/static/images/hamburger.svg" class="dropbtn">
+       <div class="dropdown-content">
+          <?php if ($tag) { ?>
+          <a href="#" onclick="openNav('help_services')">Edit services</a>
+          <a href="#" onclick="del_server()">Delete this server</a>
+          <?php } ?>
+          <a href="/?akcija=novi-live">New live server</a>
+          <a href="/">My servers</a>
+          <a href="/index.php?akcija=logout">Log out</a>
+       </div>
+       </div> 
+ -->
+      
+<!-- ako nismo ulogirani - prikazujemo drugi menu!
+-->
+
+      <div class="dropdown">
+      <img src="/static/images/hamburger.svg" class="dropbtn">
+      <div class="dropdown-content">
+          <a href="#" onclick="toggleFullscreen()">Full screen</a>
+          <a href="/logout">Log out</a>
+      </div>
+      </div>
+
+
+      </div>
+    </div>
+    <br/>
+    <div class="main" style="width: 100%">
+
+
+<!-- BEGIN APATRMANI -->
+
+    <div id="mainvideo" style="background-color:#fff; border-radius:4px; height:300px; width:500px; border-radius: 15px; 
+                               padding:10px; border:2px #bbb dashed; overflow:hidden; overflow-y: scroll; font-size:15px; position:absolute; left:10px;
+                               padding-left: 18px; padding-top:18px;">
+
+     <div id="yesap" style="display:none" class="float-container" style="width:100%">
+     </div>
+
+     <div id="noap" style="display:none"> 
+     You have no apartments yet, so please add some and then you can import ICS calendars to them!
+     <br/><br/>
+     <center>
+     <input type="button" class="bluebtn" value=" .. . Add .. ." style="" onclick="openNav('new')"/>
+     </center>
+     </div>
+     <br/><br/>
+    </div>
+
+    <div id="mainvideo2" style="background-color:#fff; border-radius:4px; height:350px; width:500px; height:100px; border-radius: 15px;
+                               padding:10px; border:2px #ddd solid; text-align: center; font-size:15px; position:absolute; 
+                               padding-left:10px; padding-top:12px; padding-bottom:2px; overflow-y:scroll">
+
+      <div style="width:95%; right:10px; text-align:left; margin-left: 10px; margin-bottom:18px">
+
+<!--
+       <div class="speech-bubble" style="font-size:14px">
+       Some action history (TODO)</div>
+      </div>
+-->
+
+<!--
+        <div style="width:95px; text-align:left; padding:4px; padding-top:0px; float:left">
+        <div style="margin-bottom:2px; margin-left:10px; margin-top:-8px">Enable sync</div>
+        <div style="margin-bottom:2px; margin-left:10px">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label></div>
+        </div>
+       
+        <span style="font-size:14px;">
+        Enables auto loading ICS data from URLs.
+        </span>
+-->
+       <div id="forap" style="padding:10px">
+       Please select or add apartment . . .. 
+       </div>
+       <br/>
+       <center>
+       <div>
+       <input type="button" class="orangebtn" value=" .. . Load data .. ." style="" onclick="apLoad()"/>
+       <input type="button" class="greenbtn" value=" .. . Calendar .. ." style="" onclick="apCalendar()"/>
+       <input type="button" class="pinkbtn" value=" .. . Delete .. ." style="" onclick="apDelete()"/>
+       <input type="button" class="bluebtn" value=" .. . Add .. ." style="" onclick="openNav('new')"/>
+       </div>
+       </center>
+
+    </div> 
+   
+
+<!-- END APATRMANI -->
+
+
+    </div>
+  <div id="footer">
+
+  </div>
+
+  <div id="myNav" class="overlay">
+    <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <br/>
+
+    <div class="overlay-content" style="margin-top:0px" id="new">
+       <span style="color:green">
+        <div id="new-info" style="margin-bottom:12px;">Molim upisati naziv novog apartmana!</div>
+        <div id="new-error" style="display:none;margin-bottom:12px;color:#a28"> .. . . </div>
+        <form id="newfrm">
+        <input type="text" name="name" placeholder="* Name..." />
+        <br/>
+
+        <input type="text" name="comment" placeholder="Comment..."/>
+        <br/>
+        <br/>
+        <input type="submit" class="bluebtn" value="  Add  "/>
+        </form>
+
+       </span>
+    </div>
+
+    <div class="overlay-content" style="margin-top:0px" id="ics">
+       <span style="color:green">
+        <div id="ics-info" style="margin-bottom:32px;">Molim učitajte kalendar! <br/> <span style="color:#f67344">Ako se učita URL - ostaje spremljen za sync. </span></div>
+        <div id="ics-error" style="display:none;margin-bottom:12px;color:#a28"> .. . . </div>
+
+        <form id="icsfrm1">
+        <input type="file" name="icsfile" />
+        <br/>
+        <br/>
+        <input type="submit" class="bluebtn" value="  Load from file  "/>
+        </form>
+        <br/>
+        <form id="icsfrm2">
+        <input type="text" name="icsurl" placeholder="* URL..."/>
+        <br/>
+        <br/>
+        <input type="submit" class="bluebtn" value="  Load from URL  "/>
+        </form>
+
+       </span>
+    </div>
+
+    <div class="overlay-content" style="margin-top:0px" id="cal">
+       <span style="color:green">
+        <div id="cal-error" style="display:none;margin-bottom:12px;color:#a28"> No calendar data, please load some .. . </div>
+
+
+       </span>
+    </div>
+
+
+  </div>
+
+
+  </body>
+
+</html>
+

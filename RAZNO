@@ -1,0 +1,76 @@
+SUBMIT FORME AJAX:
+------------------
+
+$( "form" ).on( "submit", function(e) {
+ 
+    var dataString = $(this).serialize();
+
+    // ZA JSON KORISTI .serializeArray()
+     
+    // alert(dataString); return false;
+ 
+    $.ajax({
+      type: "POST",
+      url: "bin/process.php",
+      data: dataString,
+      success: function () {
+        $("#contact_form").html("<div id='message'></div>");
+        $("#message")
+          .html("<h2>Contact Form Submitted!</h2>")
+          .append("<p>We will be in touch soon.</p>")
+          .hide()
+          .fadeIn(1500, function () {
+            $("#message").append(
+              "<img id='checkmark' src='images/check.png' />"
+            );
+          });
+      }
+    });
+ 
+    e.preventDefault();
+  });
+});
+
+
+...moglo bi se overrideati form submit, pa unutra staviti
+   token, ali to nije elegantno jer bi onda trebalo prikazati 
+   response preko javascripta.
+
+...rjesenje je ili staviti token u hidden polje (nije 
+   dobro, token vidljiv).
+
+...ili korisititi javascript (AJAX) + JSON response i 
+   ne refreshati stranicu. 
+
+TAKO NAPRAVITI.
+
+
+KAKO UCITATI INDEX
+------------------
+
+...takodjer treba poslati JWT token. Cookie nije dobro rjesenje,
+   takodjer koristiti AJAX: ucitaj praznu stranicu, a zatim
+   ucitaj vrijednosti AJAX-om (predaš token).
+
+
+FILE UPLOAD
+-----------  
+
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('download_file', name=filename))
+
+

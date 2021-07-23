@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+
+    <title> .. * .. * . Super apartmani naj naj .. .</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/daxi.js"></script>
+
+    <!--
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    -->
+
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+   
+    <script>
+
+
+    // Do the cosmetic 
+    function onresize() {
+      var w = document.documentElement.clientWidth;
+      var h = document.documentElement.clientHeight;
+      if (div = document.getElementById('mainvideo')) {
+         if (w > 600) {
+            div.style.left = '4px'; 
+            div.style.top = '46px'; 
+            if (w>1000) div.style.width = Math.floor(w/1.5).toString() + 'px';
+             else div.style.width = Math.floor(w/1.7).toString() + 'px';
+            div.style.height = (h - 82).toString() + 'px';
+            if (div2 = document.getElementById('mainvideo2')) {
+              div2.style.top = '44px';
+              div2.style.left = (div.clientWidth + 12) + 'px';
+              div2.style.width = (w - div.clientWidth - 36).toString() + 'px';
+              div2.style.height = (h - 65).toString() + 'px';
+           }
+         } else {
+           if (div2 = document.getElementById('mainvideo2')) {
+             var dh = Math.floor(h/2);
+             div.style.top = '46px'; 
+             div.style.left = '4px'; 
+             div.style.height = dh.toString() + 'px';
+             div2.style.left = '4px';
+             div2.style.top = (79 + dh).toString() + 'px';
+             div.style.width = (w - 40).toString() + 'px';
+             div2.style.width = (w - 30).toString() + 'px';
+             div2.style.height = (h - div.clientHeight - 70).toString() + 'px';
+           }
+         }
+      }
+    }
+
+   // Help ekrani
+
+   function openNav(tip) {
+      var elements = document.getElementsByClassName("overlay-content");
+      for(var x=0; x<elements.length; x++)
+      {
+         elements[x].style.visibility = 'hidden';
+         elements[x].style.height = '0px';
+      }
+      document.getElementById("myNav").style.padding = "8px";
+      document.getElementById("myNav").style.visibility = 'visible';
+      document.getElementById(tip).style.visibility = 'visible';
+      document.getElementById(tip).style.height = '100%';
+      document.getElementById("myNav").style.width = "100%";
+   }
+
+   function closeNav() {
+      var elements = document.getElementsByClassName("overlay-content");
+      document.getElementById("myNav").style.width = "0%";
+      document.getElementById("myNav").style.padding = "0px";
+   }
+
+
+    
+   $(document).ready(function(){
+        // Screen setup
+        onresize();
+
+        {% if register %}
+
+        // Register
+        openNav('register');
+ 
+        // NO AUTOSAVE!!!
+        $("#regpass, #regpass2").val('');
+        $("#regpass, #regpass2").on('keyup touchend', function() {
+           if (!$(this).val()) $(this).css('font-family', '');
+             else $(this).css('font-family', 'password');
+        });
+
+        // Submit reg form
+
+        $("#registerfrm").on('submit', function(event){
+           event.preventDefault();
+           $("#errordiv2").hide();
+
+           var formValues = $(this).serialize();
+           
+           $.post('/api/register', formValues)
+
+              // Ok, save token
+             .done(function(data) {
+                 // tst = sessionStorage.getItem('jwtToken');
+                 // alert(tst);
+
+                 // Ok message
+                 $("#regdiv2").hide();
+                 $("#errordiv2").hide();
+                 $("#registerfrm").hide();
+
+                 // NO AUTOSAVE, SO WE CAN FADE IN!!!
+                 $("#regokdiv2").fadeIn(2000);
+              })
+
+              // Error
+             .fail(function(xhr, status, error) {
+                 // error handling
+                 $("#regdiv2").hide();
+                 $("#errordiv2").html(xhr.responseText);
+                 $("#errordiv2").show();
+              });
+
+        });
+
+        {% endif %}
+
+  
+        {% if logout %}
+        // Log out
+        localStorage.removeItem('jwtToken');
+        $("#errordiv").html('Logged out. Now you can log in again!');
+        $("#errordiv").show();
+        {% endif %}
+
+        // Ajax login
+
+        $("#loginfrm").on('submit', function(event){
+          event.preventDefault();
+          $("#errordiv").html('Bad username or password. <a href="/register">Register here</a>');
+          $("#errordiv").hide();
+ 
+          var formValues = $(this).serialize();
+
+          $.post('/api/login', formValues)
+             
+              // Ok, save token
+             .done(function(data) {
+                 localStorage.setItem('jwtToken', data['token']); 
+                 // tst = sessionStorage.getItem('jwtToken');
+                 // alert(tst);
+
+                 // Redirect to main page
+                 window.location.href = '/'
+              })
+   
+              // Error
+             .fail(function(xhr, status, error) {
+                 // error handling
+                 $("#errordiv").show();
+              }); 
+       });
+   });
+
+    </script>
+
+  </head>
+  <body onresize="onresize();">
+    <!-- page content -->
+    <div class="header">
+      <div style="float:left">
+      <a href="/">
+      <img src="/static/images/baltazar.png" style="height:48px; margin-top:-3px; vertical-align:middle; "/>
+      </a>
+     </div>
+      <div style="float:left; padding-left:18px; padding-top:12px; overflow:hidden">
+
+
+      <div style="position:absolute; top:7px; left:80px">
+      <b> .. Live  .. . Apartmani .. *. * </b>  
+      </div>
+
+
+      </div>
+      <div style="position:absolute; right:20px;"> 
+   
+      <div class="dropdown">
+      <img src="/static/images/hamburger.svg" class="dropbtn">
+      <div class="dropdown-content">
+          <a href="/login">Log in</a>
+          <a href="/register">Register</a>
+      </div>
+      </div>
+
+
+      </div>
+    </div>
+    <br/>
+    <div class="main" style="width: 100%">
+
+
+<!--        // Ako nismo ulogirani - prikazujemo login formu
+-->
+
+    Please log in to view and manage apartments...
+    <br/><br/>
+    <div style="text-align:left; margin-left:18px;">
+<!--
+         if (!$ok && $_REQUEST['akcija'] == 'login') echo '<small>Bad username or password...</small>';
+-->
+
+      <form name="login" id="loginfrm"> 
+      <input type="text" name="uid" placeholder="Username..." />
+      <br/>
+      <input type="password" name="pass" placeholder="Password..."/>
+      <br/>
+      <div id="errordiv" style="display:none;margin-top:4px;color:#a28"> .. . . </div>
+      <br/>
+      <input type="submit" class="bluebtn" value="Login"/>
+      </form>
+      <br/>
+      </div>
+
+ 
+    </div>
+  <div id="footer">
+
+  </div>
+
+  <div id="myNav" class="overlay">
+    <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <br/>
+
+    <div class="overlay-content" style="margin-top:0px" id="register">
+       <span style="color:green">
+        <div id="regdiv2" style="margin-bottom:12px;">Fill in the form below to register!</div>
+        <div id="errordiv2" style="display:none;margin-bottom:12px;color:#a28"> .. . . </div>
+
+        <form name="register" id="registerfrm">
+        <input type="text" name="uid" placeholder="* Username..." />
+        <br/>
+
+        <input type="text" id="regpass" name="pass" placeholder="* Password..." autocomplete="off" />
+        <br/>
+        <input type="text" id="regpass2" name="pass2" placeholder="* Password again..." autocomplete="off" /> 
+        <br/>
+        <input type="text" name="email" placeholder="E-mail..."/>
+        <br/>
+        <br/>
+        <input type="submit" class="bluebtn" value="  Register  "/>
+        </form>
+
+        <div id="regokdiv2" style="display:none">
+        <span style="color:green">
+        <br/><br/>
+        Registration was successful, you can now log in!
+        </span>
+        <br/><br/>
+        <input type="Button" onclick="window.location.href='/login'"  class="bluebtn" value=" .. . Login now.. . .  "/>
+        </div>
+ 
+       </span>
+    </div>
+
+
+
+
+  </div>
+
+
+  </body>
+
+</html>
+
