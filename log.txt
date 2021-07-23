@@ -493,3 +493,4 @@ NameError: name 'redirect' is not defined
 114.25.83.240 - - [23/Jul/2021 20:16:17] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
 127.0.0.1 - - [23/Jul/2021 20:18:38] "GET / HTTP/1.0" 200 -
 127.0.0.1 - - [23/Jul/2021 20:19:03] "GET / HTTP/1.0" 200 -
+205.185.115.106 - - [23/Jul/2021 20:21:42] "[33mGET /script HTTP/1.1[0m" 404 -
