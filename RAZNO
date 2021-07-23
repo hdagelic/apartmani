@@ -74,3 +74,64 @@ def upload_file():
             return redirect(url_for('download_file', name=filename))
 
 
+# Aktvirati venv
+
+source env/bin/activate
+
+
+# Postgres
+
+Admnin:       su - postgres
+Create user:  createuser --interactive --pwprompt
+Create DB:    createdb apartmani_televend
+
+
+Nakon sto se su-a na postgres usera, moze se izvesti "psql" - kao admin.
+
+\du - lista usera
+\l  - lista baza
+
+Grant:
+
+GRANT ALL ON DATABASE dbname TO username;
+
+
+Change pass:
+
+ALTER USER testic WITH PASSWORD 'burek123';
+
+
+Login na bazu:
+
+psql -h localhost -U testic -d apartmani_televend
+
+
+Lista tablica:
+
+\c ime_baze
+\dt+
+
+Execute SQL:
+
+psql -h localhost -U testic -d apartmani_televend -f apartmani_televend.sql
+
+
+Dump:
+
+pg_dump -h localhost -U testic apartmani_televend > test.sql
+
+
+Restore:
+
+psql -h localhost -U testic apartmani_televend < test.sql
+
+
+# FLASK
+-------
+
+Koristimo SQLAlchemy. Baza se definira kao klasa u api.py (kao "db"), a inicijalizira se ručno preko pyton shella:
+
+python
+>>> from api import db;
+>>> db.create_all();
+
