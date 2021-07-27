@@ -1,1 +1,100 @@
-...ovdje će biti opis.
+* Frontend: jQuery + HTML: dinamički učitava sve podatke.
+.----------
+
+* Backend je napisan u Flasku, ovako:
+----------
+
+   * pod URL-om /api nalaze se funkcije koje za POST i GET zahtjeve 
+     vraćaju JSON-e,
+
+   * pod / su stranice /login /register (i /) koje su praktički samo 
+     html-ovi iz kojih se poslje AJAX-om učitavaju podaci.
+
++ pomoćna skripta ./cron.sh: služi ra refresh podataka s URL-ova.
+
+
+ * . * ..   API   . * . .. . ..
+  -----------------------
+
+   ***  /api/login ***
+
+   .. .  Radi login i vraća JWT token  .. . .
+
+   POST:   uid*, pass*    
+    OUT:   token, message  (JSON)
+
+  
+
+   ***  /api/register ***
+
+   . . .. Radi registraciju .. . .
+
+   POST:  uid*, pass*, pass2*, email  (POST)
+    OUT:  message  (JSON)
+   
+
+
+     . . . .. .za sve linkove ispod ... .. ..
+     require: Auth Bearer / JWT (sub=username)
+   ---------------------------------------------
+
+
+    ***  /api/calendar/range  ***
+
+    . .. . dohvati rezervacije i čišćenje od - do .. . .
+      
+    GET:
+
+      start  .. . start datum: Y-M-D
+      end  . . .. end datum: Y-M-D) 
+      id  .. .  . id apartmana
+
+    OUT: 
+   
+     reservations: [(start, end, gost), ...)]
+         cleaning: [(start, end), .. . ]   (JSON)
+
+  
+    ***  /api/calendar/file  ***
+
+    . .. . učitava .ics kalendar iz fajla (+ računa čišćenje) .. . .
+    
+    POST: file, id*
+    OUT:  message (JSON)
+  
+
+    ***  /api/calendar/url  ***
+
+    . .. . učitava .ics kalendar iz url-a (+ računa čišćenje) .. . .
+
+    POST: url, id*
+    OUT:  message (JSON)
+
+
+       
+   ***  /api/main/load  ***
+   
+    . .. . dohvati sve apartmane za jednog gazdu .. .
+
+    GET: id . .. id apartmana
+    OUT: apartments : [ lista aparrmana ], user, message  (JSON)
+
+
+    
+   ***  /api/main/new  ***
+   
+   . . .. dodaje novi apartman . . .. 
+
+    POST: name*, comment, image
+     OUT: message (JSON)
+   
+
+
+   *** /api/main/delete ***
+ 
+    .. . briše apartman (+ računa čišćenje) . ... 
+
+    POST: id . .. id apartmana
+    OUT:  message   (JSON)
+
+

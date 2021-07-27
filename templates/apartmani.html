@@ -11,6 +11,7 @@
 
     <script src="/static/js/jquery-3.6.0.min.js"></script>
     <script src="/static/js/daxi.js"></script>
+    <script src="/static/js/tooltip.js"></script>
 
     <!--
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -19,9 +20,19 @@
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
    
     <script>
-    // Global
+
+    //  . .. . . . . Global . ..  .. . . . .
+
+    // Selektirani apartman
     var selected = -1;
     var aps = {};
+
+    // Kalendar, izabrani tjedan
+    var tjedan = new Date();
+    var kalendar_start_sat = 8;
+    var kalendar_stop_sat = 23;
+    var kalendar_start_dan;
+    var kalendar_stop_dan;
 
     // Do the cosmetic 
     function onresize() {
@@ -100,7 +111,7 @@
       }
       var r = confirm('Delete the apartment "' + aps[selected].name + '" ?');
       if (r) {
-         var formValues = {id: selected};
+         var formValues = {id: aps[selected].id};
          $.post('/api/main/delete', formValues)
               .done(function(data) {
                  window.location.reload();
@@ -114,12 +125,73 @@
       }
    }
 
-   function apCalendar(){
-       if (selected == -1) {
+   function apCalendarLoad() {
+      if (selected == -1) {
          alert('Please select apartment!'); return -1;
       }
-      openNav('cal');
-      $('#cal-error').show();
+      openNav('cal'); apCalendar();
+   }
+
+   function apCalendar(){
+       if (selected == -1) {
+         return -1;
+      }
+
+      // global
+      if (!tjedan) tjedan=new Date(); 
+      gen_kalendar(tjedan)
+
+      if (!kalendar_start_dan || !kalendar_stop_dan) return;
+
+      // Dohvati podatke u range-u kalendara i farbaj
+      var start = kalendar_start_dan.toISOString().split('T')[0];
+      var stop = kalendar_stop_dan.toISOString().split('T')[0];
+
+      var formValues = { id: aps[selected].id, start: start, end: stop, rnd: Math.random() * 1000 };
+      $.get('/api/calendar/range', formValues)
+         .done(function(data) {
+             // Predji range kalendara, ako return upada - bojaj
+             // kalendar_start_sat, kalendar_stop_sat
+             // kalendar_start_dan, kalendar_stop_dan
+             var rez = data['reservations'];
+
+             rz2 = JSON.parse(rez);
+             for (var i = 0; i < rz2.length; i++) {
+                var j = rz2[i]['start'];
+                j = j.replace(/\s/g, "T");
+                var stdat = new Date(j);
+                var j = rz2[i]['end'];
+                j = j.replace(/\s/g, "T");
+                var endat = new Date(j);
+                
+                var starth = stdat.getHours();             
+                var endh = endat.getHours();             
+                
+                stdat = new Date(stdat.setHours(0,0,0,0));
+                endat = new Date(endat.setHours(0,0,0,0));
+
+                // Loop
+                var dani = new Date(kalendar_start_dan.setHours(0,0,0,0));
+                var polje;
+                for (dani = kalendar_start_dan; dani <= kalendar_stop_dan; dani = nextDay(dani, 1)) {
+                   var dm = shortDashDat(dani);
+                   for (var sati = kalendar_start_sat; sati < kalendar_stop_sat; sati++) {
+                      if ((dani >= endat) && (sati >= endh)) break;  
+                      if ((dani <= stdat) && (sati <= starth-1)) continue;  
+                      if (dani >= stdat && dani <= endat) {
+                         polje = '#kal-' + dm + '-' + sati;
+                         zauzmi_polje(polje, 'Rezervirao: ' + rz2[i]['gost'] + '<br/>' + 'Od: ' + rz2[i]['start'] + '<br/>' + 'Do: '+ rz2[i]['end']);
+                      }
+                   }
+                }
+             }
+         })
+         // Error
+         .fail(function(xhr, status, error) {
+            // error handling
+            $('#cal-error').html(xhr.responseText);
+            $('#cal-error').show();
+         });
    }
 
    $(document).ready(function(){
@@ -139,6 +211,8 @@
         });
  
         // Load data (all apartments)
+        // TODO: enable reload on change
+
         $.get('/api/main/load')
 
              // Ok, show data
@@ -149,7 +223,7 @@
                var apcnt = 0;
                $.each(data.apartments, function(k, v) {
                   aps[v.id] = v;
-                  $('#yesap').append('<div id="' + v.id  + '" class="float-child"><img style="max-width:100; max-height:90%" src= "/static/images/' + v.image +  '"/><br/>' + v.name  + '</div>');
+                  $('#yesap').append('<div id="' + v.id  + '" class="float-child"><img style="max-width:100; max-height:90%" src= "/static/images/' + v.image +  '"/><br/><small>' + v.name  + '</small></div>');
                   apcnt++;
                });
 
@@ -159,6 +233,9 @@
                   $(this).css('border-color', 'purple');
                   selected = $(this).attr('id');
                   $('#forap').html('.. . for apartment : <b>' + aps[selected].name + '</b> .. .' );
+                  if (aps[selected].url) $('#icsurl').val(aps[selected].url);
+                     else $('#icsurl').val('');
+                  $('#ics-error').hide();
                });  
 
                // No apartments?
@@ -206,7 +283,66 @@
               });
         });
 
-        
+        // Load ICS URL
+
+        $("#icsfrm2").on('submit', function(event){
+           event.preventDefault();
+           $("#ics-error").hide();
+           $("#ics-info").show();
+
+           var formValues = $(this).serialize();
+           formValues += '&id=' + aps[selected].id; 
+
+           $.post('/api/calendar/url', formValues)
+              .done(function(data) {
+                 alert(data.message);
+              })
+              // Error
+              .fail(function(xhr, status, error) {
+                // error handling
+                 $("#ics-error").html(xhr.responseText);
+                 $("#ics-info").hide();
+                 $("#ics-error").show();
+              });
+
+        })
+
+        // Load ICS file 
+
+        $("#icsfrm1").on('submit', function(event){
+           event.preventDefault();
+           $("#ics-error").hide();
+           $("#ics-info").show();
+
+           var fd = new FormData(this);
+           fd.append('id', aps[selected].id);
+
+           //var files = $('#icsfile')[0].files;
+           //if(files.length > 0) fd.append('file',files[0]);
+           //  else {
+           //    alert('Please select a file!'); return;
+           //  }
+            
+           $('#loading').show();
+
+           $.ajax({
+             url: '/api/calendar/file',
+             data: fd,
+             processData: false,
+             contentType: false,
+             type: 'POST',
+             success: function(data){
+                $('#loading').hide();
+                alert(data.message);
+             },
+             error: function(xhr, status, error) {
+                 $('#loading').hide();
+                 $("#ics-error").html(xhr.responseText);
+                 $("#ics-info").hide();
+                 $("#ics-error").show();
+              }
+           }); 
+        });
          
    });
 
@@ -317,7 +453,7 @@
        <center>
        <div>
        <input type="button" class="orangebtn" value=" .. . Load data .. ." style="" onclick="apLoad()"/>
-       <input type="button" class="greenbtn" value=" .. . Calendar .. ." style="" onclick="apCalendar()"/>
+       <input type="button" class="greenbtn" value=" .. . Calendar .. ." style="" onclick="apCalendarLoad()"/>
        <input type="button" class="pinkbtn" value=" .. . Delete .. ." style="" onclick="apDelete()"/>
        <input type="button" class="bluebtn" value=" .. . Add .. ." style="" onclick="openNav('new')"/>
        </div>
@@ -335,8 +471,9 @@
   </div>
 
   <div id="myNav" class="overlay">
+    <div style="position:absolute;top:-8px;right:0px;z-index:100">
     <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
-
+    </div>
     <br/>
 
     <div class="overlay-content" style="margin-top:0px" id="new">
@@ -356,20 +493,21 @@
        </span>
     </div>
 
-    <div class="overlay-content" style="margin-top:0px" id="ics">
+    <div class="overlay-content" style="margin-top:0px;" id="ics">
        <span style="color:green">
-        <div id="ics-info" style="margin-bottom:32px;">Molim učitajte kalendar! <br/> <span style="color:#f67344">Ako se učita URL - ostaje spremljen za sync. </span></div>
+        <div id="ics-info" style="margin-bottom:32px;">Molim učitajte kalendar! <br/> <span style="color:#f67344" id="urlx">Ako se učita URL - ostaje spremljen za sync. </span></div>
         <div id="ics-error" style="display:none;margin-bottom:12px;color:#a28"> .. . . </div>
 
         <form id="icsfrm1">
         <input type="file" name="icsfile" />
         <br/>
+        <img src="/static/images/wait20.gif" style="display:none;" id="loading" />
         <br/>
         <input type="submit" class="bluebtn" value="  Load from file  "/>
         </form>
         <br/>
         <form id="icsfrm2">
-        <input type="text" name="icsurl" placeholder="* URL..."/>
+        <input type="text" name="url" id="icsurl" placeholder="URL, blank to delete..."/>
         <br/>
         <br/>
         <input type="submit" class="bluebtn" value="  Load from URL  "/>
@@ -378,12 +516,223 @@
        </span>
     </div>
 
-    <div class="overlay-content" style="margin-top:0px" id="cal">
+    <div class="overlay-content" style="margin-top:0px;width:97%;overflow-y:scroll" id="cal">
        <span style="color:green">
         <div id="cal-error" style="display:none;margin-bottom:12px;color:#a28"> No calendar data, please load some .. . </div>
-
-
        </span>
+<center>
+
+<script>
+
+
+// Dohvaća prethodni ponedjaljak
+
+function getLastMonday(dat) {
+  const date = dat;
+  const today = date.getDate();
+  const dayOfTheWeek = date.getDay();
+  const newDate = date.setDate(today - (dayOfTheWeek || 7) + 1);
+  return new Date(newDate);
+}
+
+// Kratki datum d.m.
+
+function shortDat(dat) {
+  return  dat.getDate()  + ". " + (dat.getMonth()+1) + "."; 
+}
+
+// Kratki datum d-m
+
+function shortDashDat(dat) {
+  return  dat.getDate()  + "-" + (dat.getMonth()+1);
+}
+
+// Kratki datum Y-M-D
+
+function shortDashDatFull(dat) {
+  return  dat.getFullYear()  + "-" + (dat.getMonth()+1) + '-' + dat.getDate();
+}
+
+
+// Uvecaj datum
+
+function nextDay(dat, offset) {
+  var ret = new Date(dat);
+  return new Date(ret.setDate(ret.getDate() + offset));
+}
+
+// Tjedan dana od "dat"
+
+function nextWeek(dat) {
+  var ret = new Date(dat);
+  return new Date(ret.setDate(ret.getDate() + 7));
+}
+
+// Tjedan dana prije "dat"
+
+function prevWeek(dat) {
+  var ret = new Date(dat);
+  return new Date(ret.setDate(ret.getDate() - 7));
+}
+
+// Dan
+
+function dan(index) {
+   switch(index) {
+      case 1: return 'PON';
+      case 2: return 'UTO';
+      case 3: return 'SRI';
+      case 4: return 'ČET';
+      case 5: return 'PET';
+      case 6: return 'SUB';
+      case 7: return 'NED';
+   }
+}
+
+// Boja jedno polje kao zauzeto, + razlog
+// format: #kal-d-m-h
+
+function zauzmi_polje(polje, razlog) {
+    var elem = $(polje)
+    if (!elem) return;  
+
+    $(elem).css('background-color', '#ffaa88');
+    $(elem).mouseover(function () {
+      tooltip.show(razlog);
+   });
+   $(elem).mouseout(function () {
+      tooltip.hide();
+   });
+}
+
+// zauzima 1 dan u kalendaru
+// in: dan, mjesec
+
+function zauzmi_dan(d, m, razlog) {
+   var f;
+   var hcnt = kalendar_stop_sat - kalendar_start_sat;
+   for (f=0; f<hcnt; f++) {
+      zauzmi_polje('#kal-' + d + '-' + m + '-' + (kalendar_start_sat + f), razlog); 
+   }
+}
+
+// zauzima 1 dan u kalendaru do nekog sata
+// in: dan, mjesec, do (sati ukljucivo)
+
+function zauzmi_dan_do(d, m, dox, razlog) {
+   var f;
+   dox = parseInt(dox);
+   var hcnt = dox - kalendar_start_sat;
+   for (f=0; f<hcnt; f++) {
+      zauzmi_polje('#kal-' + d + '-' + m + '-' + (kalendar_start_sat + f), razlog);
+   }
+}
+
+// zauzima 1 dan u kalendaru od nekog sata
+// in: dan, mjesec, do (sati ukljucivo)
+
+function zauzmi_dan_od(d, m, odx, razlog) {
+   var f;
+   odx = parseInt(odx);
+   var hcnt = kalendar_stop_sat - odx;
+   for (f=0; f<hcnt; f++) {
+      zauzmi_polje('#kal-' + d + '-' + m + '-' + (odx + f), razlog);
+   }
+}
+
+
+
+// Generira kalendar u zadanom tjednu
+
+function gen_kalendar(dat) {
+   var f, r, ret;
+   var start = kalendar_start_sat;
+   var hcnt = kalendar_stop_sat - kalendar_start_sat;
+
+   var mon = getLastMonday(dat);
+
+   kalendar_start_dan = mon;
+   kalendar_stop_dan = nextDay(mon,6);
+    //alert(shortDat(nextDay(mon,1)));
+
+   $('#kalendar').html('');
+   
+   // header
+   var ret = $('#kalendar').append(
+     '<tr style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px;"></tr>' 
+   );
+ 
+   ret.append('<td style="border: 1px gray; border-bottom: 0px; border-right: 0px;" align="center" width="12.5%"></td>'); 
+   // datumi
+   for (f=1; f<=7; f++) { 
+ 
+      var day = nextDay(mon,f-1);
+  
+      ret.append('<td style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; border: none; padding-top: 3px" align="center" width="12.5%"><span style="font-size:12px">' + shortDat(day) + '</span></td>'      );
+   }
+  
+   // header - dani 
+      var ret = $('#kalendar').append(
+     '<tr style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px;"></tr>'
+   );
+
+   ret.append('<td style="border: 1px gray; border-bottom: 0px; border-right: 0px;" align="center" width="12.5%"></td>');
+   // dani
+   for (f=1; f<=7; f++) {
+      ret.append('<td style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; border-top: 0px; border: none; padding-bottom: 3px" align="center" ><span style="font-size:12px">' + dan(f) + '</span></td>');
+   }
+
+
+   // sati
+   for (f=0; f<hcnt; f++) {
+      $('#kalendar').append('<tr style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px;"></tr>');
+   
+      // vremena
+      ret.append('<td rowspan="2" style="padding:0px;border: 1px solid rgb(200,200,200); border-bottom: 0px; border-left: 0px; border-right: 0px;" align="center" width="12.5%"><span style="font-size:10px">' + start + ' - ' + (start + 1) + '</span></td>');
+ 
+      for (r=1; r<=7; r++) {
+
+        var day = nextDay(mon,r-1);
+
+         // ID chelija da ih poslije mozemo samo ofarbati! (format: kal-d-m-h (start))
+         var idc = 'kal-' + shortDashDat(day) + '-' + start;
+
+         if (f % 2 == 0)  
+              ret.append('<td id="' + idc  + '" style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; height:100%; background-color:#fff" align="center" ><small></small></td>');
+         else
+              ret.append('<td id="' + idc  + '" style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; height:100%; background-color:#f0f0f0" align="center" ><small></small></td>');
+      }
+      start++;
+   }
+
+   // BOJANJE:
+
+   //zauzmi_dan_do('1', '8', '13', '<strong>Rezervirao: </strong>mstrelar (Mario Strelar)<br /><strong>Termin: </strong>07:00 - 18:00<br /><strong>Razlog: </strong> test');
+   //zauzmi_dan_od('30', '7', '15', '<strong>Rezervirao: </strong>mstrelar (Mario Strelar)<br /><strong>Termin: </strong>07:00 - 18:00<br /><strong>Razlog: </strong> test');
+}
+
+
+</script>
+
+<div style="margin-left:-20px;">
+<div style="margin-bottom:10px">
+<a href="#" style="color:#444" onclick="tjedan=prevWeek(tjedan); apCalendar();">&#60;&#60; prethodni tjedan </a> | <a href="#" style="color:#444" onclick="tjedan=nextWeek(tjedan);  apCalendar();">sljedeći tjedan >></a>
+</div>
+
+<table width="85%" id="kalendar" class="kalendar" style="border: 1px solid gray; padding:0px; spacing:0px;"  cellpadding="0" cellspacing="0">
+</table>
+<center><table style="margin-left:-25px" cellspacing="8px" border="0"><tr><td width="25px"></td><td width="20px" bgcolor="#ffaa88" style="border: 1px solid rgb(128,128,128);">&nbsp;</td><td> zauzeto </td><td  width="20px" bgcolor="#f0f0f0" style="border: 1px solid rgb(128,128,128);">&nbsp;</td><td> slobodno </td><td  width="20px" bgcolor="#f6d040" style="border: 1px solid rgb(128,128,128);">&nbsp;</td><td> čišćenje </td></tr></table></center>
+<br />
+</div>
+
+<br/>
+<br/><br/>
+
+</center>
+
+
+
+
     </div>
 
 

@@ -35,6 +35,11 @@ api.config['SECRET_KEY'] = b'_5#y2L"F4Q8z\n\xea]/'
 api.config['UPLOAD_FOLDER'] = '/tmp'
 
 
+# Default FROM - TO vremena (ako ne pisu u ISC-u)
+
+default_from = '15:00';
+default_to = '11:00';
+
 
 # Loads an .ics file
 
@@ -42,6 +47,7 @@ def parse_ics(path):
   f = open(path, 'rb')
   gcal = Calendar.from_ical(f.read())
   f.close()
+ 
   return gcal
 
 
@@ -53,8 +59,36 @@ def parse_ics_url(url):
   urllib.request.urlretrieve(url, fl)
   ret = parse_ics(fl)
   os.remove(fl)
+
   return ret
 
+
+# ICS to arary
+
+def ics_to_array(cal):
+   arr = []
+   for e in cal.walk('vevent'):
+      start = str(e['DTSTART'].dt)
+      end = str(e['DTEND'].dt)
+      w = e['SUMMARY']
+ 
+      stdt = datetime.strptime(start, '%Y-%m-%d')
+      endt = datetime.strptime(end, '%Y-%m-%d')
+
+
+      # Dodaj start / end vremena ako ne pisu
+      if stdt.hour == 0 and stdt.minute == 0 and stdt.second == 0:
+         start += ' ' + default_from
+
+      if endt.hour == 0 and endt.minute == 0 and endt.second == 0:
+         end += ' ' + default_to
+
+
+      arr.append({ 'gost': w, 'start': start, 'end': end })
+
+   # Sort by date
+   tab = sorted(arr, key=lambda k: k['start'])
+   return tab
 
 
 # .. . . . .. . . ..  . . . Database .. . . . .. . . . . . . ..
@@ -118,6 +152,13 @@ class Apartman(db.Model):
    name = db.Column(db.String(80), nullable=False)
    comment = db.Column(db.String(256))
    image = db.Column(db.String(24))
+
+   # URL etc.
+   conf = db.Column(db.Text)     
+
+   # As JSON (1 to 1 relation, so why not)
+   calendar = db.Column(db.Text) 
+   cleaning = db.Column(db.Text)
 
    gazda_username = db.Column(db.String(80), db.ForeignKey('gazda.username'), nullable=False)
 
@@ -204,12 +245,12 @@ def main(user, action):
      ### /load action - load all apartments ###
 
      if action == 'load':
-        apq = Apartman.query.filter_by(gazda_username=user)
+        apq = Apartman.query.filter_by(gazda_username=user).order_by(Apartman.id.asc())
         
         aps = []
         for ap in apq:
            # TODO - staviti u klasu
-           aps.append( { 'id': ap.id, 'name': ap.name, 'comment': ap.comment, 'image': ap.image } )
+           aps.append( { 'id': ap.id, 'name': ap.name, 'comment': ap.comment, 'image': ap.image, 'url': ap.conf } )
 
         # Return results
         ret = {
@@ -239,6 +280,7 @@ def main(user, action):
           ap = Apartman(name=name, comment=comment, image=image, gazda_username=user)
           db.session.add(ap)
           db.session.commit()
+          db.session.close()
           return make_response({ 'message': 'OK: ' + name + ', ' + comment + ', ' + image }, 200)
         except Exception as e:
           return make_response({ 'message': str(e)}, 400)
@@ -257,11 +299,134 @@ def main(user, action):
         else:
            db.session.delete(ap)
            db.session.commit()
+           db.session.close()
               
            # TODO: recalc
 
            return make_response({ 'message': 'OK' }, 200)
 
+
+
+# Calendar endpoint - Loads and outputs calendar data
+#                     and cleaning data too...
+#
+# . . . .... .   .   .  . .   . .  .  .. . . . . . . .. .
+#
+# On GET it reads data, and outputs to the frontend
+# and on POST it loads apartment data and calculates
+# optimal cleaning times...
+
+@api.route('/api/calendar/<action>', methods=['POST', 'GET'])
+@authorize
+def calendar(user, action):
+  if request.method == 'GET':
+
+     ### get reservation / cleaning info for some date range ###
+
+     if action == 'range':
+        if not ('id' in request.args): abort(400)
+        idx = request.args['id']
+        ap = Apartman.query.filter_by(id=idx, gazda_username=user).first()
+ 
+        cal = []
+        if ap.calendar:
+          inlst = json.loads(ap.calendar)
+          if type(inlst) is list:
+             if not ('start' in request.args) or not ('end' in request.args): cal = ap.calendar
+             else:
+               # Filter
+               start = datetime.strptime(request.args['start'], '%Y-%m-%d')
+               end = datetime.strptime(request.args['end'], '%Y-%m-%d') + timedelta(days=1)
+             
+               for rng in inlst:
+                 rng_start = datetime.strptime(rng['start'], '%Y-%m-%d %H:%M') 
+                 rng_end = datetime.strptime(rng['end'], '%Y-%m-%d %H:%M')
+                 if not (rng_start >= end or rng_end <= start):
+                    cal.append(rng)
+
+        return make_response({ 'reservations': json.dumps(cal) }, 200 )
+ 
+
+  if request.method == 'POST':
+
+     ### /file action - loads data from file and calls calc ###
+
+     if action == 'file':
+        if 'icsfile' not in request.files:
+           return make_response({ 'message': 'No file in request!' }, 400)
+        fl = request.files['icsfile']
+
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if fl.filename == '':
+           return make_response({ 'message': 'Please select a file!' }, 400)
+        filename = secure_filename(fl.filename)
+        path = os.path.join(api.config['UPLOAD_FOLDER'], filename);
+        fl.save(path)
+
+        # Load ics
+        try:
+           cal = parse_ics(path);
+        except:
+           return make_response({ 'message': 'File is not a valid ICS file!' }, 400)
+        finally:
+           os.remove(path)
+
+        tab = ics_to_array(cal)  
+
+        # Load apartment, & save
+
+        if not ('id' in request.form): abort(400)
+        idx = request.form['id']
+
+        ap = Apartman.query.filter_by(id=idx, gazda_username=user).first()
+        ap.calendar = json.dumps(tab)
+        db.session.commit() 
+        db.session.close() 
+
+        # TODO: call cisti_sve!
+        alg_out = 'TODO'
+
+        return make_response({ 'message': str(tab), 'log': alg_out }, 200)
+
+
+     ### /url action - loads data from URL and calls calc ###
+
+     if action == 'url': 
+        # Load apartment & calendar
+
+        if not ('id' in request.form) or not ('url' in request.form): abort(400)
+        idx = request.form['id']
+        url = request.form['url'].strip()
+
+        # Clear URL
+        if url == '':
+           ap = Apartman.query.filter_by(id=idx, gazda_username=user).first()
+           ap.conf = ''
+           db.session.commit()
+           db.session.close()
+           return make_response({ 'message': ' *** Cleared URL from DB *** ' }, 433 )
+ 
+        try:
+           cal = parse_ics_url(url);
+        except:
+           return make_response({ 'message': 'URL is not a valid ICS!' }, 400)
+
+        tab = ics_to_array(cal)
+  
+        # Load apartment, & save
+
+        ap = Apartman.query.filter_by(id=idx, gazda_username=user).first()
+        ap.calendar = json.dumps(tab)
+        ap.conf = url
+        db.session.commit()
+        db.session.close()
+
+        # TODO: call cisti_sve!
+        alg_out = 'TODO'
+
+        return make_response({ 'message': str(tab), 'log': alg_out }, 200)
+    
 
 # Login endpoint - checks the login 
 #            
@@ -340,6 +505,7 @@ def register():
         gazda = Gazda(username=uid, password=password, data=json.dumps({ 'email' : email }))
         db.session.add(gazda)
         db.session.commit()
+        db.session.close()
         return make_response({ 'message': 'OK' }, 200)
      except Exception as e:
         return make_response({ 'message': 'Error saving to database: ' + str(e) }, 500)

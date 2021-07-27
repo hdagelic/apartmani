@@ -44,6 +44,20 @@ a:visited {
     text-shadow: 1px 1px #fff;
 }
 
+
+.kalendar tr {
+    border: 1px solid rgb(200,200,200); 
+    border-bottom: 0px; 
+    border-right: 0px;
+}
+
+.kalendar td {
+   height: 8px; 
+   border: 1px solid rgb(200,200,200); 
+   border-bottom: 0px; 
+   border-right: 0px;
+}
+
 .float-container {
     border: 3px solid #fff;
     padding: 20px;
@@ -359,3 +373,11 @@ input[type=text]:focus, input[type="password"]:focus {
 }
 
 
+/* Tooltip za kalendar */
+
+.hotspot {color:#900; padding-bottom:1px; border-bottom:1px dotted #900; cursor:pointer}
+
+#tt {position:absolute; z-index:100; display:block; background:url(/static/images/tt_left.gif) top left no-repeat}
+#tttop {display:block; height:5px; margin-left:5px; background:url(/static/images/tt_top.gif) top right no-repeat; overflow:hidden}
+#ttcont {display:block; padding:2px 12px 3px 7px; margin-left:5px; background:#666; color:#FFF}
+#ttbot {display:block; height:5px; margin-left:5px; background:url(/static/images/tt_bottom.gif) top right no-repeat; overflow:hidden}
