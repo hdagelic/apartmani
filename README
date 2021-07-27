@@ -13,8 +13,45 @@
 + pomoćna skripta ./cron.sh: služi ra refresh podataka s URL-ova.
 
 
- * . * ..   API   . * . .. . ..
-  -----------------------
+
+
+   .. * ..   .   ALGORITAM  .  .. . * . .. 
+        --------------------------
+
+
+* Algoritam za računanje čišćenja izvršava se na svaku promjenu
+  za sve apartmane nekog gazde, i radi ovako:
+
+ 1) Dohvati slobodna vremena za sve aparmane i posloži ih:
+
+    AP1:  -----       ----------  --        ------------
+    AP2:  ----------  ----------------  -----  ---------
+    AP3:  ---------------------------- -----    --------
+
+ 2)                  |                |       |
+                     |                |       |
+    SRCH1 (naj-maksi | mum) -----------       |
+                     |                        |
+    SRCH2 -----------*------------------------  (max 2)
+
+    .. . 
+    itd ...                         
+
+
+   Prvo se prelaze svi apartmani i traži se najveće maksimume
+   (3 slobodna za ovaj primjer). Ako ima: odmah označi čišćenje,
+
+   onda ide drugi pass, u kojem se traži prvi manji maksimum
+   (2 slobodna) - ako ima označi čišćenje,
+
+   itd, sve do pojedinačnih slobodnih.
+
+
+
+
+
+  . * . * ..   API   . * . .. . ..
+      -----------------------
 
    ***  /api/login ***
 
