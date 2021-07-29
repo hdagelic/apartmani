@@ -165,7 +165,10 @@
 
                 for (var clc=0; clc<cl2.length; clc++) {
                    cld = cl2[clc];
-                   for (var sati = kalendar_start_sat; sati < kalendar_stop_sat; sati++) {
+
+                   // TODO: ubaciti ove sate u backend, da salje zajedno s datumima, sad mi se neda
+
+                   for (var sati = 11; sati < 15; sati++) {
                         polje = '#kal-' + cld + '-' + sati;
                         zauzmi_polje(polje, ' . .. Ovdje je najbolje <br/> za čistiti . . ..', '#f6d040');
                    }
