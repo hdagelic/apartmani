@@ -136,6 +136,8 @@
        if (selected == -1) {
          return -1;
       }
+            
+      $('#cal-error').hide();
 
       // global
       if (!tjedan) tjedan=new Date(); 
@@ -154,8 +156,22 @@
              // kalendar_start_sat, kalendar_stop_sat
              // kalendar_start_dan, kalendar_stop_dan
              var rez = data['reservations'];
+             var cl = data['cleaning'];
 
              rz2 = JSON.parse(rez);
+             cl2 = JSON.parse(cl);
+
+              // Loop (cleaning)
+
+                for (var clc=0; clc<cl2.length; clc++) {
+                   cld = cl2[clc];
+                   for (var sati = kalendar_start_sat; sati < kalendar_stop_sat; sati++) {
+                        polje = '#kal-' + cld + '-' + sati;
+                        zauzmi_polje(polje, ' . .. Ovdje je najbolje <br/> za čistiti . . ..', '#f6d040');
+                   }
+                }
+
+
              for (var i = 0; i < rz2.length; i++) {
                 var j = rz2[i]['start'];
                 j = j.replace(/\s/g, "T");
@@ -170,17 +186,20 @@
                 stdat = new Date(stdat.setHours(0,0,0,0));
                 endat = new Date(endat.setHours(0,0,0,0));
 
-                // Loop
+
+                // Loop (reservations)
+
                 var dani = new Date(kalendar_start_dan.setHours(0,0,0,0));
                 var polje;
                 for (dani = kalendar_start_dan; dani <= kalendar_stop_dan; dani = nextDay(dani, 1)) {
                    var dm = shortDashDat(dani);
+
                    for (var sati = kalendar_start_sat; sati < kalendar_stop_sat; sati++) {
                       if ((dani >= endat) && (sati >= endh)) break;  
                       if ((dani <= stdat) && (sati <= starth-1)) continue;  
                       if (dani >= stdat && dani <= endat) {
                          polje = '#kal-' + dm + '-' + sati;
-                         zauzmi_polje(polje, 'Rezervirao: ' + rz2[i]['gost'] + '<br/>' + 'Od: ' + rz2[i]['start'] + '<br/>' + 'Do: '+ rz2[i]['end']);
+                         zauzmi_polje(polje, 'Rezervirao: ' + rz2[i]['gost'] + '<br/>' + 'Od: ' + rz2[i]['start'] + '<br/>' + 'Do: '+ rz2[i]['end'], '#ffaa88');
                       }
                    }
                 }
@@ -541,17 +560,23 @@ function shortDat(dat) {
   return  dat.getDate()  + ". " + (dat.getMonth()+1) + "."; 
 }
 
-// Kratki datum d-m
-
-function shortDashDat(dat) {
-  return  dat.getDate()  + "-" + (dat.getMonth()+1);
-}
 
 // Kratki datum Y-M-D
 
 function shortDashDatFull(dat) {
-  return  dat.getFullYear()  + "-" + (dat.getMonth()+1) + '-' + dat.getDate();
+  str =   dat.getFullYear() + '-'
+          + ('0' + (dat.getMonth()+1)).slice(-2) + '-'
+          + ('0' + dat.getDate()).slice(-2);
+  return str;
 }
+
+
+// Kratki datum (alias)
+
+function shortDashDat(dat) {
+   return shortDashDatFull(dat)
+}
+
 
 
 // Uvecaj datum
@@ -590,13 +615,13 @@ function dan(index) {
 }
 
 // Boja jedno polje kao zauzeto, + razlog
-// format: #kal-d-m-h
+// format: #kal-Y-M-D-h
 
-function zauzmi_polje(polje, razlog) {
+function zauzmi_polje(polje, razlog, boja) {
     var elem = $(polje)
     if (!elem) return;  
 
-    $(elem).css('background-color', '#ffaa88');
+    $(elem).css('background-color', boja);
     $(elem).mouseover(function () {
       tooltip.show(razlog);
    });
@@ -612,7 +637,7 @@ function zauzmi_dan(d, m, razlog) {
    var f;
    var hcnt = kalendar_stop_sat - kalendar_start_sat;
    for (f=0; f<hcnt; f++) {
-      zauzmi_polje('#kal-' + d + '-' + m + '-' + (kalendar_start_sat + f), razlog); 
+      zauzmi_polje('#kal-' + d + '-' + m + '-' + (kalendar_start_sat + f), razlog, '#ffaa88'); 
    }
 }
 
@@ -624,7 +649,7 @@ function zauzmi_dan_do(d, m, dox, razlog) {
    dox = parseInt(dox);
    var hcnt = dox - kalendar_start_sat;
    for (f=0; f<hcnt; f++) {
-      zauzmi_polje('#kal-' + d + '-' + m + '-' + (kalendar_start_sat + f), razlog);
+      zauzmi_polje('#kal-' + d + '-' + m + '-' + (kalendar_start_sat + f), razlog, '#ffaa88');
    }
 }
 
@@ -636,7 +661,7 @@ function zauzmi_dan_od(d, m, odx, razlog) {
    odx = parseInt(odx);
    var hcnt = kalendar_stop_sat - odx;
    for (f=0; f<hcnt; f++) {
-      zauzmi_polje('#kal-' + d + '-' + m + '-' + (odx + f), razlog);
+      zauzmi_polje('#kal-' + d + '-' + m + '-' + (odx + f), razlog, '#ffaa88');
    }
 }
 
@@ -694,13 +719,13 @@ function gen_kalendar(dat) {
 
         var day = nextDay(mon,r-1);
 
-         // ID chelija da ih poslije mozemo samo ofarbati! (format: kal-d-m-h (start))
+         // ID chelija da ih poslije mozemo samo ofarbati! (format: kal-Y-M-D-h (start))
          var idc = 'kal-' + shortDashDat(day) + '-' + start;
 
          if (f % 2 == 0)  
-              ret.append('<td id="' + idc  + '" style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; height:100%; background-color:#fff" align="center" ><small></small></td>');
+              ret.append('<td id="' + idc  + '" style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; height:100%; background-color:#fff" align="center" ><small>&nbsp;</small></td>');
          else
-              ret.append('<td id="' + idc  + '" style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; height:100%; background-color:#f0f0f0" align="center" ><small></small></td>');
+              ret.append('<td id="' + idc  + '" style="border: 1px solid rgb(200,200,200); border-bottom: 0px; border-right: 0px; height:100%; background-color:#f0f0f0" align="center" ><small>&nbsp;</small></td>');
       }
       start++;
    }

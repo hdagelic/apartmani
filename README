@@ -46,7 +46,19 @@
 
    itd, sve do pojedinačnih slobodnih.
 
+   Zanimljivo:
+   ----------
+   
+   For-petlja za SQL Alchemy objekt je jako spora, i to
+   svaki put, moguće da čita iz baze non-stop.
+   Tako da prepisujemo atribute u običnu listu, za algoritam.
+   
+   Koristimo dictionary za check svega, pa je algoritam
+   brz (4 apartmana, 1 gorina raspona - oko 0.005 sekundi)
+   sa "for apartman in apartmani" je oko 5 sekundi!
 
+   Rubni uvjeti su malo zeznuti za programirati ali
+   sad valjda radi i to!
 
 
 

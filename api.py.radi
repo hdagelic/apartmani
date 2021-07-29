@@ -6,7 +6,6 @@ from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
 from sqlalchemy import orm
 from sqlalchemy.orm import backref, relationship
 from datetime import datetime, timedelta
-from time import time, sleep
 import jwt, json
 from werkzeug.utils import secure_filename
 from functools import wraps
@@ -68,46 +67,6 @@ def naj_cleaning(gazda):
 
    # Dohvati apartmane
    aps = Apartman.query.filter_by(gazda_username=gazda).order_by(Apartman.id.asc())
- 
-   # Za brže loop-anje, loadamo i stavljamo u običnu listu
-   # SQLAlchemy loop je spor...
-   # ...tu također i  punimo tablicu za traženje...
- 
-   apcnt = 0
-   fast_aps = {} 
-   range_max = None 
-
-   for ap in aps:
-     cal = None
-     if ap.calendar:
-       cal = json.loads(ap.calendar)
-       for ent in cal:
-         kad = datetime.strptime(ent['end'], '%Y-%m-%d %H:%M').date()
-         if not range_max or kad > range_max: range_max = kad
-     simple = {
-       'name': ap.name,
-       'id': ap.id,
-       'cal': cal
-     }
-     fast_aps[apcnt] = simple
-     apcnt += 1
-
-   # print(str(range_max))
- 
-
-   # START ALGORITMA
-   # . ... . . . . .. . . . . . .. .  . 
-   # loadaj tablicu za traženje
-   t0 = time()
-
-
-   Apartman.non_free_data = {}
-
-   for cnt in range(0, apcnt):
-     ap = fast_aps[cnt]
-
-     Apartman.load_non_free_data(ap['id'], ap['cal'], range_max);
-
 
    # nadji raspon rezervacija
 
@@ -116,13 +75,11 @@ def naj_cleaning(gazda):
    min_dat = None
    max_dat = None
 
-   # Za sve apartmane...
+   for ap in aps:
+     if not ap.calendar: continue
 
-   for cnt in range(0, apcnt):
-     ap = fast_aps[cnt]
-     if not ap['cal']: continue
-
-     cal = ap['cal']
+     # TODO: staviti u on load
+     cal = json.loads(ap.calendar)
 
      for ent in cal:
        st = datetime.strptime(ent['start'], '%Y-%m-%d %H:%M').date()
@@ -139,21 +96,19 @@ def naj_cleaning(gazda):
 
    max1 = 0
    max1_na = ''
-   dana = 0
  
    while lpd <= max_dat:
+      sdat = lpd.strftime('%Y-%m-%d')
       lmax = 0
-      for cnt in range(0, apcnt): 
-        ap = fast_aps[cnt]
-        if not ap['cal']: continue
-        if Apartman.jel_slobodan_za_ciscenje(ap['id'], lpd):
+      for ap in aps:
+        if not ap.calendar: continue
+        if ap.jel_slobodan_za_ciscenje(sdat):
            lmax += 1
       if lmax > max1:  
          max1 = lmax
-         max1_na = str(lpd)
+         max1_na = sdat
 
       lpd += timedelta(days=1)
-      dana += 1
 
    if max1:
       write_log(log, '  -->  ' + str(max1) + ' na ' + max1_na +  "\n")
@@ -170,38 +125,21 @@ def naj_cleaning(gazda):
    for naj in range(max1, 0, -1):
       lpd = min_dat + timedelta(days=1)
       while lpd <= max_dat:
+         sdat = lpd.strftime('%Y-%m-%d')
          lmax = 0
-         for cnt in range(0, apcnt):
-           ap = fast_aps[cnt]
-
-           if Apartman.jel_slobodan_za_ciscenje(ap['id'], lpd):
+         for ap in aps:
+           if ap.jel_slobodan_za_ciscenje(sdat):
               lmax += 1
   
          # if sdat == max1_na: print('...max: ' + str(lmax));
 
          if lmax == naj:
-           write_log(log, '** *  * našao max. ' + str(naj) +  ' --> ' + str(lpd) + ' ** *')
-           for cnt in range(0, apcnt):
-              ap = fast_aps[cnt]
-              if Apartman.jel_slobodan_za_ciscenje(ap['id'], lpd):
-                Apartman.rezerviraj_za_ciscenje(ap['id'], lpd)
+           write_log(log, '** *  * našao max. ' + str(naj) +  ' --> ' + sdat + ' ** *')
+           for ap in aps:
+              ap.rezerviraj_za_ciscenje(sdat)
 
          lpd += timedelta(days=1)
-   
-   t1 = time()
-   write_log(log, '\nRadio za gazdu: ' + gazda + ', raspon: ' + str(dana) + ' dana.')
-   write_log(log,  str(t1-t0) + ' sekundi. \n') 
-   write_log(log, ':)' + '\n') 
 
-   cl = {}
-
-   # Return data
-   for cnt in range(0, apcnt):
-      ap = fast_aps[cnt]
-      cl[ap['id']] = Apartman.get_cleaning_days(ap['id'])
-
-   #print(cl)
-   return cl
    
 
 # Loads an .ics file
@@ -334,42 +272,30 @@ class Apartman(db.Model):
 
    non_free_data = {}
 
- 
-   # Returns a list containing all of the
-   # cleaning days for the given apartment
-   # if algorithm did't run it gives an []
-
-   @staticmethod
-   def get_cleaning_days(idx):
-     ret = []
-     if not idx in Apartman.non_free_data:
-        return ret
-     for dat in Apartman.non_free_data[idx]:
-        if Apartman.non_free_data[idx][dat] == 'c': 
-           ret.append(dat.strftime('%Y-%m-%d'))
-     return ret
-
 
    # Load all non-free days to a dict, executed only
-   # once per apartment, for fast searcing...
-   # idx is apartment id, cal is the calendar
-   # and range_max is the biggest reservation date
-   # (of all to-be-checked apartments)
+   # once per apartment, for fast searcing
 
-   @staticmethod
-   def load_non_free_data(idx, cal, range_max):
+   def load_non_free_data(self):
 
-     Apartman.non_free_data[idx] = {}
+     Apartman.non_free_data[self.id] = {}
 
-     if cal is None: return
+     if self.calendar is None: return
+
+     cal = json.loads(self.calendar)
     
      # cijeli raspon, oznaciti kao podrucje rezervacije
 
+     #lpd = datetime.strptime(cal[0]['end'], '%Y-%m-%d %H:%M').date()
+     #lpd = datetime.strptime('2020-09-30', '%Y-%m-%d').date()
+     #max_xdat = datetime.strptime(cal[len(cal)-1]['start'], '%Y-%m-%d %H:%M').date()
+     max_xdat = datetime.strptime('2021-08-22', '%Y-%m-%d').date()
+ 
      # Don't see me before the first reservation
      lpd = datetime.strptime(cal[0]['end'], '%Y-%m-%d %H:%M').date()
 
-     while lpd <= range_max:
-       Apartman.non_free_data[idx][lpd] = 'x'
+     while lpd <= max_xdat:
+       Apartman.non_free_data[self.id][lpd.strftime('%Y-%m-%d')] = 'x'
        lpd = lpd + timedelta(days=1)
  
      for ent in cal:
@@ -377,25 +303,20 @@ class Apartman(db.Model):
        st = datetime.strptime(ent['start'], '%Y-%m-%d %H:%M')
        en = datetime.strptime(ent['end'], '%Y-%m-%d %H:%M')
 
+       st_date = st.strftime('%Y-%m-%d')
+
        # Loop all non-free days, and put them to dict 
 
        # It's free for cleaning on the first day!
 
-       st_dat = st.date() + timedelta(days=1) 
+       lpd = st.date() + timedelta(days=1) 
        en_dat = en.date()
 
        # Not "<=" because it's free for cleaning on the last day!
 
-       lpd = st_dat
        while lpd < en_dat:
-          Apartman.non_free_data[idx][lpd] = 'r'
+          Apartman.non_free_data[self.id][lpd.strftime('%Y-%m-%d')] = 'r'
           lpd = lpd + timedelta(days=1)
-
-       # Single day resrevation
-   
-       if en_dat == st_dat:
-          Apartman.non_free_data[idx][st_dat] = 'rx'
-
 
        #print(Apartman.non_free_data)
 
@@ -410,12 +331,11 @@ class Apartman(db.Model):
    # u zadano vrijeme (nije rezerviran
    # ni za boravak ni za ciscenje)
 
-   @staticmethod
-   def jel_slobodan_za_ciscenje(idx, dat):
-      if not idx in Apartman.non_free_data:
+   def jel_slobodan_za_ciscenje(self, dat):
+      if not self.id in Apartman.non_free_data:
          return False
       try:
-        if Apartman.non_free_data[idx][dat] == 'x' or Apartman.non_free_data[idx][dat] == 'rx':
+        if Apartman.non_free_data[self.id][dat] == 'x':
           return True   
         else:
           return False
@@ -427,29 +347,37 @@ class Apartman(db.Model):
    # treba popuniti sve termine izmedju dvije rezervacije
    # i do kraja cijelog opsega 
 
-   @staticmethod
-   def rezerviraj_za_ciscenje(idx, dat):
+   def rezerviraj_za_ciscenje(self, dat):
  
+      #TODO stavi u on load
+      cal = json.loads(self.calendar)
+
       # Cleaning on that day
-      Apartman.non_free_data[idx][dat] = 'c'
+      Apartman.non_free_data[self.id][dat] = 'c'
    
+      datt = datetime.strptime(dat, '%Y-%m-%d').date()
+
       # Fill up
-      lpd = dat + timedelta(days=1)
+      lpd = datt + timedelta(days=1)
+      lpds = lpd.strftime('%Y-%m-%d')
 
       try:
-         while Apartman.non_free_data[idx][lpd] == 'x':
-           Apartman.non_free_data[idx][lpd] = 'd'
+        while Apartman.non_free_data[self.id][lpds] == 'x':
+           Apartman.non_free_data[self.id][lpds] = 'd'
            lpd += timedelta(days=1)
+           lpds = lpd.strftime('%Y-%m-%d')
       except:
         pass
   
       # Fill down
-      lpd = dat - timedelta(days=1)
+      lpd = datt - timedelta(days=1)
+      lpds = lpd.strftime('%Y-%m-%d')
 
       try:
-        while Apartman.non_free_data[idx][lpd] == 'x':
-           Apartman.non_free_data[idx][lpd] = 'd'
+        while Apartman.non_free_data[self.id][lpds] == 'x':
+           Apartman.non_free_data[self.id][lpds] = 'd'
            lpd -= timedelta(days=1) 
+           lpds = lpd.strftime('%Y-%m-%d')
       except:
         pass
       
@@ -459,8 +387,8 @@ class Apartman(db.Model):
 
    @orm.reconstructor
    def init_on_load(self): 
-      pass 
-      #self.load_non_free_data()
+ 
+      self.load_non_free_data()
 
 
    def __repr__(self):
@@ -643,7 +571,7 @@ def calendar(user, action):
                  if not (rng_start >= end or rng_end <= start):
                     cal.append(rng)
 
-        return make_response({ 'reservations': json.dumps(cal), 'cleaning': ap.cleaning }, 200 )
+        return make_response({ 'reservations': json.dumps(cal) }, 200 )
  
 
   if request.method == 'POST':
