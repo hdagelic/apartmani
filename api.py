@@ -61,13 +61,14 @@ def get_log(log):
 
 # .. . Algoritam .. . .
 
-def naj_cleaning(gazda):
+def naj_cleaning(gazda, aps=None):
 
    log = api.config['LOG_FOLDER'] + '/ap-' + gazda + '.log'
    if os.path.exists(log): os.remove(log)
 
    # Dohvati apartmane
-   aps = Apartman.query.filter_by(gazda_username=gazda).order_by(Apartman.id.asc())
+   if not aps:
+     aps = Apartman.query.filter_by(gazda_username=gazda).order_by(Apartman.id.asc())
  
    # Za brže loop-anje, loadamo i stavljamo u običnu listu
    # SQLAlchemy loop je spor...
@@ -600,7 +601,19 @@ def main(user, action):
            db.session.commit()
            db.session.close()
               
-           # TODO: recalc
+           # recalc
+
+           # Run algorithm
+
+           aps = Apartman.query.filter_by(gazda_username=user)
+           out = naj_cleaning(user, aps)
+           for ap in aps:
+             if ap.id in out:
+               ap.cleaning = json.dumps(out[ap.id])
+
+           db.session.commit()
+           db.session.close()
+
 
            return make_response({ 'message': 'OK' }, 200)
 
@@ -683,8 +696,25 @@ def calendar(user, action):
         db.session.commit() 
         db.session.close() 
 
-        # TODO: call cisti_sve!
-        alg_out = 'TODO'
+        # Run algorithm 
+
+        aps = Apartman.query.filter_by(gazda_username=user)
+        out = naj_cleaning(user, aps)
+        for ap in aps:
+          if ap.id in out:
+             ap.cleaning = json.dumps(out[ap.id])
+
+        db.session.commit()
+        db.session.close()
+
+        # Send log
+
+        alg_out = '' 
+        try:
+           with open(api.config['LOG_FOLDER'] + '/ap-' + user + '.log','r') as file:
+             alg_out = file.read()
+        except:
+           pass
 
         return make_response({ 'message': str(tab), 'log': alg_out }, 200)
 
@@ -721,8 +751,25 @@ def calendar(user, action):
         db.session.commit()
         db.session.close()
 
-        # TODO: call cisti_sve!
-        alg_out = 'TODO'
+        # Run algorithm
+
+        aps = Apartman.query.filter_by(gazda_username=user)
+        out = naj_cleaning(user, aps)
+        for ap in aps:
+          if ap.id in out:
+             ap.cleaning = json.dumps(out[ap.id])
+
+        db.session.commit()
+        db.session.close()
+
+        # Send log
+
+        alg_out = ''
+        try:
+           with open(api.config['LOG_FOLDER'] + '/ap-' + user + '.log','r') as file:
+             alg_out = file.read()
+        except:
+           pass
 
         return make_response({ 'message': str(tab), 'log': alg_out }, 200)
     

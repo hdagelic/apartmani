@@ -314,7 +314,8 @@
 
            $.post('/api/calendar/url', formValues)
               .done(function(data) {
-                 alert(data.message);
+                 alert(data.log);
+                 window.location.reload();
               })
               // Error
               .fail(function(xhr, status, error) {
@@ -352,7 +353,8 @@
              type: 'POST',
              success: function(data){
                 $('#loading').hide();
-                alert(data.message);
+                alert(data.log);
+                window.location.reload();
              },
              error: function(xhr, status, error) {
                  $('#loading').hide();
