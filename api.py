@@ -651,8 +651,8 @@ def calendar(user, action):
                end = datetime.strptime(request.args['end'], '%Y-%m-%d') + timedelta(days=1)
              
                for rng in inlst:
-                 rng_start = datetime.strptime(rng['start'], '%Y-%m-%d %H:%M') 
-                 rng_end = datetime.strptime(rng['end'], '%Y-%m-%d %H:%M')
+                 rng_start = datetime.strptime(rng['start'], '%Y-%m-%d %H:%M') - timedelta(days=1) 
+                 rng_end = datetime.strptime(rng['end'], '%Y-%m-%d %H:%M') + timedelta(days=1)
                  if not (rng_start >= end or rng_end <= start):
                     cal.append(rng)
 
