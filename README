@@ -54,7 +54,7 @@
    Tako da prepisujemo atribute u običnu listu, za algoritam.
    
    Koristimo dictionary za check svega, pa je algoritam
-   brz (4 apartmana, 1 gorina raspona - oko 0.005 sekundi)
+   brz (4 apartmana, 1 godina raspona - oko 0.005 sekundi)
    sa "for apartman in apartmani" je oko 5 sekundi!
 
    Rubni uvjeti su malo zeznuti za programirati ali
