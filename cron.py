@@ -27,8 +27,8 @@ for ap in apq:
          gazde.append(ap.gazda_username) 
 
      except Exception as e: 
-       raise e
-       #print('* Error: bad URL for ' + ap.name + ' (' + ap.conf + ' * ' + str(e) + ')')
+       #raise e
+       print('* Error: bad URL for ' + ap.name + ' (' + ap.conf + ' * ' + str(e) + ')')
 
      db.session.commit()
 
