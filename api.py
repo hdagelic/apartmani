@@ -70,6 +70,8 @@ def naj_cleaning(gazda, aps=None):
    if not aps:
      aps = Apartman.query.filter_by(gazda_username=gazda).order_by(Apartman.id.asc())
  
+   if not aps or aps.count() == 0: return []
+		
    # Za brže loop-anje, loadamo i stavljamo u običnu listu
    # SQLAlchemy loop je spor...
    # ...tu također i  punimo tablicu za traženje...
@@ -605,14 +607,17 @@ def main(user, action):
 
            # Run algorithm
 
-           aps = Apartman.query.filter_by(gazda_username=user)
-           out = naj_cleaning(user, aps)
-           for ap in aps:
-             if ap.id in out:
-               ap.cleaning = json.dumps(out[ap.id])
+           try:
+             aps = Apartman.query.filter_by(gazda_username=user)
+             out = naj_cleaning(user, aps)
+             for ap in aps:
+               if ap.id in out:
+                 ap.cleaning = json.dumps(out[ap.id])
 
-           db.session.commit()
-           db.session.close()
+             db.session.commit()
+             db.session.close()
+           except:
+             pass
 
 
            return make_response({ 'message': 'OK' }, 200)

@@ -1601,3 +1601,653 @@ AttributeError: 'NoneType' object has no attribute 'calendar'
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 123-644-551
+127.0.0.1 - - [30/Jul/2021 00:36:37] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:38] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:40] "GET /api/calendar/range?id=5&start=2021-07-25&end=2021-07-31&rnd=70.0065800614813 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:42] "GET /api/calendar/range?id=5&start=2021-08-01&end=2021-08-07&rnd=367.61161859348346 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:43] "GET /api/calendar/range?id=5&start=2021-08-08&end=2021-08-14&rnd=218.78629547881445 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:44] "GET /api/calendar/range?id=5&start=2021-08-15&end=2021-08-21&rnd=262.0769911716403 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:45] "GET /api/calendar/range?id=5&start=2021-08-22&end=2021-08-28&rnd=155.50391229451677 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:48] "GET /api/calendar/range?id=5&start=2021-08-15&end=2021-08-21&rnd=598.4656801108017 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:50] "GET /api/calendar/range?id=5&start=2021-08-08&end=2021-08-14&rnd=345.887053041706 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:50] "GET /api/calendar/range?id=5&start=2021-08-01&end=2021-08-07&rnd=544.147645567395 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:51] "GET /api/calendar/range?id=5&start=2021-07-25&end=2021-07-31&rnd=5.684831510117894 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:36:51] "GET /api/calendar/range?id=5&start=2021-07-18&end=2021-07-24&rnd=305.04033164214394 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:01] "GET /api/calendar/range?id=2&start=2021-07-18&end=2021-07-24&rnd=814.110353142032 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:02] "GET /api/calendar/range?id=2&start=2021-07-25&end=2021-07-31&rnd=993.6551303234713 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:06] "GET /api/calendar/range?id=2&start=2021-08-01&end=2021-08-07&rnd=920.880171338448 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:08] "GET /api/calendar/range?id=2&start=2021-07-25&end=2021-07-31&rnd=759.8207999789408 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:14] "GET /api/calendar/range?id=1&start=2021-07-25&end=2021-07-31&rnd=452.41336288035126 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:15] "GET /api/calendar/range?id=1&start=2021-07-18&end=2021-07-24&rnd=441.7603911236665 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:15] "GET /api/calendar/range?id=1&start=2021-07-11&end=2021-07-17&rnd=201.66637813599775 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:15] "GET /api/calendar/range?id=1&start=2021-07-04&end=2021-07-10&rnd=247.80183930224297 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:16] "GET /api/calendar/range?id=1&start=2021-06-27&end=2021-07-03&rnd=397.7747452937459 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:16] "GET /api/calendar/range?id=1&start=2021-06-20&end=2021-06-26&rnd=489.73502586167064 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:16] "GET /api/calendar/range?id=1&start=2021-06-13&end=2021-06-19&rnd=467.33897140140425 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:16] "GET /api/calendar/range?id=1&start=2021-06-06&end=2021-06-12&rnd=255.89171587281623 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:16] "GET /api/calendar/range?id=1&start=2021-05-30&end=2021-06-05&rnd=766.3625413876407 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:17] "GET /api/calendar/range?id=1&start=2021-05-23&end=2021-05-29&rnd=656.79027771945 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:17] "GET /api/calendar/range?id=1&start=2021-05-16&end=2021-05-22&rnd=2.040317556273763 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:17] "GET /api/calendar/range?id=1&start=2021-05-09&end=2021-05-15&rnd=761.1783046634031 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:17] "GET /api/calendar/range?id=1&start=2021-05-02&end=2021-05-08&rnd=617.4921227115367 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:17] "GET /api/calendar/range?id=1&start=2021-04-25&end=2021-05-01&rnd=497.84578557158744 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:17] "GET /api/calendar/range?id=1&start=2021-04-18&end=2021-04-24&rnd=122.84767538157593 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:18] "GET /api/calendar/range?id=1&start=2021-04-11&end=2021-04-17&rnd=825.8033634188766 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:18] "GET /api/calendar/range?id=1&start=2021-04-04&end=2021-04-10&rnd=130.88153934993917 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:18] "GET /api/calendar/range?id=1&start=2021-03-28&end=2021-04-03&rnd=137.04273940658408 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:18] "GET /api/calendar/range?id=1&start=2021-03-21&end=2021-03-27&rnd=926.4215155230664 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:18] "GET /api/calendar/range?id=1&start=2021-03-14&end=2021-03-20&rnd=310.2315074501998 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:18] "GET /api/calendar/range?id=1&start=2021-03-07&end=2021-03-13&rnd=704.0310010662675 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:19] "GET /api/calendar/range?id=1&start=2021-02-28&end=2021-03-06&rnd=57.535405232409076 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:19] "GET /api/calendar/range?id=1&start=2021-02-21&end=2021-02-27&rnd=60.296143372510656 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:19] "GET /api/calendar/range?id=1&start=2021-02-14&end=2021-02-20&rnd=364.0479282022171 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:19] "GET /api/calendar/range?id=1&start=2021-02-07&end=2021-02-13&rnd=125.9646948360429 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:19] "GET /api/calendar/range?id=1&start=2021-01-31&end=2021-02-06&rnd=525.323508057462 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:20] "GET /api/calendar/range?id=1&start=2021-01-24&end=2021-01-30&rnd=613.7901821160225 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:20] "GET /api/calendar/range?id=1&start=2021-01-17&end=2021-01-23&rnd=348.1816362921146 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:20] "GET /api/calendar/range?id=1&start=2021-01-10&end=2021-01-16&rnd=567.9003397867482 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:20] "GET /api/calendar/range?id=1&start=2021-01-03&end=2021-01-09&rnd=391.9837084157183 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:20] "GET /api/calendar/range?id=1&start=2020-12-27&end=2021-01-02&rnd=563.9372344133712 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:21] "GET /api/calendar/range?id=1&start=2020-12-20&end=2020-12-26&rnd=924.0938539554371 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:21] "GET /api/calendar/range?id=1&start=2020-12-13&end=2020-12-19&rnd=492.277146685443 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:21] "GET /api/calendar/range?id=1&start=2020-12-06&end=2020-12-12&rnd=601.856712498456 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:21] "GET /api/calendar/range?id=1&start=2020-11-29&end=2020-12-05&rnd=744.6242992471676 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:22] "GET /api/calendar/range?id=1&start=2020-11-22&end=2020-11-28&rnd=183.23600776130067 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:22] "GET /api/calendar/range?id=1&start=2020-11-15&end=2020-11-21&rnd=156.91849233687006 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:22] "GET /api/calendar/range?id=1&start=2020-11-08&end=2020-11-14&rnd=567.854236632507 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:22] "GET /api/calendar/range?id=1&start=2020-11-01&end=2020-11-07&rnd=774.1169330437303 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:22] "GET /api/calendar/range?id=1&start=2020-10-25&end=2020-10-31&rnd=747.571576420466 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:22] "GET /api/calendar/range?id=1&start=2020-10-18&end=2020-10-24&rnd=13.590869593509414 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:23] "GET /api/calendar/range?id=1&start=2020-10-11&end=2020-10-17&rnd=481.04343155795436 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:23] "GET /api/calendar/range?id=1&start=2020-10-04&end=2020-10-10&rnd=837.0179748634006 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:23] "GET /api/calendar/range?id=1&start=2020-09-27&end=2020-10-03&rnd=888.3138066370917 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:23] "GET /api/calendar/range?id=1&start=2020-09-20&end=2020-09-26&rnd=623.3714421888992 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:25] "GET /api/calendar/range?id=1&start=2020-09-27&end=2020-10-03&rnd=587.2402091784768 HTTP/1.0" 200 -
+24.102.85.242 - - [30/Jul/2021 00:37:25] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 00:37:28] "GET /api/calendar/range?id=2&start=2020-09-27&end=2020-10-03&rnd=367.87895482358766 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:35] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:35] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:36] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:40] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:41] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:41] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:43] "GET /api/calendar/range?id=2&start=2021-07-25&end=2021-07-31&rnd=708.8041663898348 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:45] "GET /api/calendar/range?id=2&start=2021-08-01&end=2021-08-07&rnd=351.73337766827115 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:46] "GET /api/calendar/range?id=2&start=2021-07-25&end=2021-07-31&rnd=988.3866396150848 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:48] "GET /api/calendar/range?id=5&start=2021-07-25&end=2021-07-31&rnd=694.6220504456264 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:49] "GET /api/calendar/range?id=5&start=2021-08-01&end=2021-08-07&rnd=859.8948200053613 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:50] "GET /api/calendar/range?id=5&start=2021-08-08&end=2021-08-14&rnd=971.4509943767447 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:51] "GET /api/calendar/range?id=5&start=2021-08-15&end=2021-08-21&rnd=451.5345501800199 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:51] "GET /api/calendar/range?id=5&start=2021-08-22&end=2021-08-28&rnd=735.2271336446447 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:54] "GET /logout HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:58] "POST /api/login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:58] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:37:58] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:01] "GET /api/calendar/range?id=5&start=2021-07-25&end=2021-07-31&rnd=803.9280323149716 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:02] "GET /api/calendar/range?id=5&start=2021-07-18&end=2021-07-24&rnd=614.9852600878545 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:03] "GET /api/calendar/range?id=5&start=2021-07-25&end=2021-07-31&rnd=951.1290359597489 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:04] "GET /api/calendar/range?id=5&start=2021-08-01&end=2021-08-07&rnd=578.1444283564882 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:05] "GET /api/calendar/range?id=5&start=2021-08-08&end=2021-08-14&rnd=997.1316569576778 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:06] "GET /api/calendar/range?id=5&start=2021-08-15&end=2021-08-21&rnd=226.1170533742811 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:07] "GET /api/calendar/range?id=5&start=2021-08-22&end=2021-08-28&rnd=721.6870181270152 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:11] "GET /api/calendar/range?id=3&start=2021-08-22&end=2021-08-28&rnd=378.10014277396766 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:12] "GET /api/calendar/range?id=3&start=2021-08-15&end=2021-08-21&rnd=170.98795799916468 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:12] "GET /api/calendar/range?id=3&start=2021-08-08&end=2021-08-14&rnd=544.3991126147563 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:13] "GET /api/calendar/range?id=3&start=2021-08-01&end=2021-08-07&rnd=206.1964964113594 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:14] "GET /api/calendar/range?id=3&start=2021-08-08&end=2021-08-14&rnd=823.8114628218773 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:15] "GET /api/calendar/range?id=3&start=2021-08-15&end=2021-08-21&rnd=194.95342288429262 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:16] "GET /api/calendar/range?id=3&start=2021-08-22&end=2021-08-28&rnd=460.9355437325449 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:17] "GET /api/calendar/range?id=3&start=2021-08-15&end=2021-08-21&rnd=190.88381006855903 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:24] "POST /api/calendar/url HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:26] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:28] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:30] "GET /api/calendar/range?id=2&start=2021-07-25&end=2021-07-31&rnd=162.7784659778755 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:32] "GET /api/calendar/range?id=5&start=2021-07-25&end=2021-07-31&rnd=767.392894003472 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:33] "GET /api/calendar/range?id=5&start=2021-07-18&end=2021-07-24&rnd=910.9430336027626 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:34] "GET /api/calendar/range?id=5&start=2021-07-25&end=2021-07-31&rnd=586.8609824626651 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:35] "GET /api/calendar/range?id=5&start=2021-08-01&end=2021-08-07&rnd=770.7205686071721 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:36] "GET /api/calendar/range?id=5&start=2021-08-08&end=2021-08-14&rnd=987.4003751739964 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:37] "GET /api/calendar/range?id=5&start=2021-08-15&end=2021-08-21&rnd=607.8276196808444 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:38] "GET /api/calendar/range?id=5&start=2021-08-22&end=2021-08-28&rnd=5.225229096263773 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:49] "GET /logout HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:54] "POST /api/login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:54] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:54] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:38:59] "POST /api/calendar/url HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:05] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:05] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:07] "GET /api/calendar/range?id=19&start=2021-07-25&end=2021-07-31&rnd=94.66043722465378 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:09] "GET /api/calendar/range?id=6&start=2021-07-25&end=2021-07-31&rnd=437.62506268312995 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:10] "GET /api/calendar/range?id=6&start=2021-08-01&end=2021-08-07&rnd=280.80417952404656 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:11] "GET /api/calendar/range?id=6&start=2021-08-08&end=2021-08-14&rnd=706.2049522705289 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:12] "GET /api/calendar/range?id=6&start=2021-08-15&end=2021-08-21&rnd=4.546635788976516 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:13] "GET /api/calendar/range?id=6&start=2021-08-22&end=2021-08-28&rnd=260.9010893686301 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:39:18] "GET /logout HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 00:45:02] "GET /logout HTTP/1.0" 200 -
+122.117.124.198 - - [30/Jul/2021 00:55:50] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 00:57:56] "[33mGET /ecp/Current/exporttool/microsoft.exchange.ediscovery.exporttool.application HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:06:38] "[33mGET /django/media/auto_slike/img_im_752.gif HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:06:39] "[33mGET /django/media/auto_slike/img_im_752.gif HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:06:40] "[33mGET /django/media/auto_slike/img_im_752.gif HTTP/1.0[0m" 404 -
+220.135.225.246 - - [30/Jul/2021 01:13:15] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:53] "[33mGET /mysqladmin/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:54] "[33mGET /pma/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:54] "[33mGET /phpMyAdmin/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:54] "[33mGET /mysql/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:54] "[33mGET /phpmyadmin/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:55] "[33mGET /database/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:55] "[33mGET /myadmin/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:15:55] "[33mGET /sqladmin/print.css HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:17:10] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+34.79.68.246 - - [30/Jul/2021 01:25:17] "GET / HTTP/1.1" 200 -
+173.208.236.114 - - [30/Jul/2021 01:27:49] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 01:31:00] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 01:45:18] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 01:57:26] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+45.61.185.207 - - [30/Jul/2021 02:05:37] "[33mGET /manager/html HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:13:38] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:13:39] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:13:46] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 02:14:05] "GET / HTTP/1.0" 200 -
+138.68.172.68 - - [30/Jul/2021 02:23:21] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+59.127.155.198 - - [30/Jul/2021 02:23:28] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+24.102.85.242 - - [30/Jul/2021 02:27:10] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+173.208.236.114 - - [30/Jul/2021 02:28:47] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:30:04] "GET / HTTP/1.0" 200 -
+79.122.94.249 - - [30/Jul/2021 02:31:58] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+45.90.161.49 - - [30/Jul/2021 02:34:04] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:36:12] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:36:16] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 02:37:03] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:37:04] "[33mGET /ads.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:55:15] "[33mGET /.env HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 02:55:16] "[35m[1mPOST / HTTP/1.0[0m" 500 -
+Traceback (most recent call last):
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2088, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.handle_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 481, in index
+    return redirect('/bu.html')
+NameError: name 'redirect' is not defined
+39.72.165.183 - - [30/Jul/2021 02:56:19] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 03:02:52] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 03:02:53] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 03:03:02] "GET / HTTP/1.0" 200 -
+46.174.191.29 - - [30/Jul/2021 03:10:22] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 03:18:42] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 03:18:54] "GET /login HTTP/1.0" 200 -
+173.208.236.114 - - [30/Jul/2021 03:30:04] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 03:33:51] "[33mGET /1 HTTP/1.0[0m" 404 -
+109.248.6.168 - - [30/Jul/2021 03:36:46] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 03:44:32] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 03:44:32] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 03:44:44] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 03:48:26] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+88.247.52.79 - - [30/Jul/2021 04:07:39] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:08:42] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+116.88.82.63 - - [30/Jul/2021 04:11:20] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+218.161.56.15 - - [30/Jul/2021 04:13:19] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:15:26] "GET / HTTP/1.0" 200 -
+171.232.40.145 - - [30/Jul/2021 04:21:30] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+171.232.40.145 - - [30/Jul/2021 04:21:33] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:30:08] "[33mGET /admin//config.php HTTP/1.0[0m" 404 -
+173.208.236.114 - - [30/Jul/2021 04:30:53] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:31:32] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 04:33:51] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+45.90.161.42 - - [30/Jul/2021 04:36:22] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:37:50] "GET / HTTP/1.0" 200 -
+14.7.65.80 - - [30/Jul/2021 04:39:02] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:39:28] "GET / HTTP/1.0" 200 -
+45.61.185.167 - - [30/Jul/2021 04:40:23] "[33mGET /manager/html HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:47:47] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 04:50:11] "GET / HTTP/1.0" 200 -
+115.61.187.115 - - [30/Jul/2021 04:53:08] "[33mGET /boaform/admin/formLogin?username=ec8&psd=ec8 HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 04:55:47] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 04:59:02] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:01:15] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:03:09] "GET / HTTP/1.0" 200 -
+196.44.167.10 - - [30/Jul/2021 05:19:33] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+114.35.156.26 - - [30/Jul/2021 05:24:28] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+209.141.50.153 - - [30/Jul/2021 05:27:31] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:28:27] "[33mGET /django/media/auto_slike/img_im_202.gif HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:28:28] "[33mGET /django/media/auto_slike/img_im_202.gif HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:28:28] "[33mGET /django/media/auto_slike/img_im_201.gif HTTP/1.0[0m" 404 -
+45.61.185.207 - - [30/Jul/2021 05:29:36] "[33mGET /manager/html HTTP/1.1[0m" 404 -
+182.230.183.92 - - [30/Jul/2021 05:35:35] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+92.22.211.69 - - [30/Jul/2021 05:38:56] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:42:19] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:42:19] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:42:23] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:42:23] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:42:57] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:43:01] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:44:58] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:44:59] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:45:05] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:46:36] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:49:06] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:49:21] "GET / HTTP/1.0" 200 -
+47.96.29.171 - - [30/Jul/2021 05:54:37] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 05:57:34] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 05:57:35] "GET / HTTP/1.0" 200 -
+173.208.236.114 - - [30/Jul/2021 06:00:12] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+209.141.50.153 - - [30/Jul/2021 06:01:31] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+178.165.32.224 - - [30/Jul/2021 06:03:46] "GET / HTTP/1.1" 200 -
+160.226.222.158 - - [30/Jul/2021 06:06:05] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+31.44.185.45 - - [30/Jul/2021 06:13:42] code 400, message Bad request syntax ('\x01\x01æ')
+31.44.185.45 - - [30/Jul/2021 06:13:42] "[35m[1mæ[0m" HTTPStatus.BAD_REQUEST -
+173.208.236.114 - - [30/Jul/2021 06:25:20] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:30:23] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 06:30:42] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 06:45:23] "[33mPOST /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:23] "[33mPOST /api/jsonws/invoke HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:25] "[33mGET /index.php?s=/Index/\think\app/invokefunction&function=call_user_func_array&vars[0]=md5&vars[1][]=HelloThinkPHP21 HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:25] "[33mGET /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:26] "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 06:45:29] "[33mPOST /mifs/.;/services/LogService HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:30] "[33mGET /wp-content/plugins/wp-file-manager/readme.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:33] "[33mGET /console/ HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:35] "[33mPOST /Autodiscover/Autodiscover.xml HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:35] "[33mGET /_ignition/execute-solution HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:45:36] "GET / HTTP/1.0" 200 -
+78.168.101.118 - - [30/Jul/2021 06:51:00] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 06:53:21] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:00:14] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+194.87.139.152 - - [30/Jul/2021 07:11:11] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:18:15] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:18:47] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:19:43] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+173.208.236.114 - - [30/Jul/2021 07:20:09] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+116.88.82.63 - - [30/Jul/2021 07:22:13] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:26:15] "GET / HTTP/1.0" 200 -
+185.216.140.6 - - [30/Jul/2021 07:32:58] code 400, message Bad request syntax ('\x16\x03\x01\x00\x8c\x01\x00\x00\x88\x03\x035:Þ\x11¡¹\x94ûSÁ6_¡çf¡Ãû\x8e¨×;WËs\t_Ü\x07\x07\x12\xa0\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+185.216.140.6 - - [30/Jul/2021 07:32:58] "[35m[1m   5:Þ¡¹ûSÁ6_¡çf¡Ãû¨×;WËs	_Ü   À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+185.216.140.6 - - [30/Jul/2021 07:33:46] "GET / HTTP/1.1" 200 -
+2.45.100.120 - - [30/Jul/2021 07:37:57] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:42:14] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:43:01] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:44:16] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:45:04] "GET / HTTP/1.0" 200 -
+93.46.48.136 - - [30/Jul/2021 07:45:57] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:47:52] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:48:52] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:48:53] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:49:48] "[31m[1mGET /api/main/load HTTP/1.0[0m" 401 -
+127.0.0.1 - - [30/Jul/2021 07:49:49] "GET /login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:49:49] "GET /login HTTP/1.0" 200 -
+121.145.92.175 - - [30/Jul/2021 07:51:51] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+209.141.50.153 - - [30/Jul/2021 07:53:08] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+167.248.133.37 - - [30/Jul/2021 07:53:17] "GET / HTTP/1.1" 200 -
+167.248.133.37 - - [30/Jul/2021 07:53:17] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2021 07:56:01] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:56:15] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:56:16] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:59:10] "[33mGET /robots.txt HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 07:59:11] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 07:59:12] "GET /login HTTP/1.0" 200 -
+113.172.131.190 - - [30/Jul/2021 08:02:02] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 08:04:43] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:04:49] "GET /login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:04:49] "[31m[1mGET /api/main/load HTTP/1.0[0m" 401 -
+127.0.0.1 - - [30/Jul/2021 08:05:03] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:05:04] "[31m[1mGET /api/main/load HTTP/1.0[0m" 401 -
+127.0.0.1 - - [30/Jul/2021 08:05:04] "GET /login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:05:04] "GET /login HTTP/1.0" 200 -
+172.251.154.169 - - [30/Jul/2021 08:05:46] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+2.45.100.120 - - [30/Jul/2021 08:06:06] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 08:06:36] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:06:45] "GET /login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:06:45] "[31m[1mGET /api/main/load HTTP/1.0[0m" 401 -
+127.0.0.1 - - [30/Jul/2021 08:06:47] "GET /login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:01] "[31m[1mPOST /api/login HTTP/1.0[0m" 401 -
+127.0.0.1 - - [30/Jul/2021 08:07:07] "POST /api/login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:08] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:08] "GET /api/main/load HTTP/1.0" 200 -
+59.127.155.198 - - [30/Jul/2021 08:07:29] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 08:07:29] "GET /api/calendar/range?id=19&start=2021-07-26&end=2021-08-01&rnd=505.09751666819056 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:33] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:34] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:34] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:36] "GET /api/calendar/range?id=6&start=2021-07-26&end=2021-08-01&rnd=109.26348450048917 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:37] "GET /api/calendar/range?id=6&start=2021-08-02&end=2021-08-08&rnd=757.3839760646434 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:38] "GET /api/calendar/range?id=6&start=2021-08-09&end=2021-08-15&rnd=43.999292583514205 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:39] "GET /api/calendar/range?id=6&start=2021-08-16&end=2021-08-22&rnd=951.5143899306227 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:40] "GET /api/calendar/range?id=6&start=2021-08-23&end=2021-08-29&rnd=277.5900064837413 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:07:47] "[35m[1mPOST /api/main/delete HTTP/1.0[0m" 500 -
+Traceback (most recent call last):
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2088, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.handle_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 526, in decorated_function
+    return f(user, *args, **kws)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 609, in main
+    out = naj_cleaning(user, aps)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 139, in naj_cleaning
+    lpd = min_dat + timedelta(days=1)
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'datetime.timedelta'
+127.0.0.1 - - [30/Jul/2021 08:08:02] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:08:02] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:08:10] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:08:10] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:08:10] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:08:15] "[35m[1mPOST /api/main/delete HTTP/1.0[0m" 500 -
+Traceback (most recent call last):
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2088, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.handle_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 526, in decorated_function
+    return f(user, *args, **kws)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 609, in main
+    out = naj_cleaning(user, aps)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 139, in naj_cleaning
+    lpd = min_dat + timedelta(days=1)
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'datetime.timedelta'
+64.188.255.131 - - [30/Jul/2021 08:09:21] "[33mPOST /cgi-bin/ViewLog.asp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 08:09:27] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:10:06] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:10:06] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:10:14] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:10:14] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:10:14] "GET /api/main/load HTTP/1.0" 200 -
+ * Detected change in '/srv/www/apartmani.putovanja.net/api.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 123-644-551
+127.0.0.1 - - [30/Jul/2021 08:12:43] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:12:43] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:12:44] "GET /api/main/load HTTP/1.0" 200 -
+27.35.40.13 - - [30/Jul/2021 08:13:29] "[33mGET /boaform/admin/formLogin?username=admin&psd=admin HTTP/1.0[0m" 404 -
+ * Detected change in '/srv/www/apartmani.putovanja.net/api.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 123-644-551
+127.0.0.1 - - [30/Jul/2021 08:15:42] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:15:43] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:15:48] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:15:49] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:15:49] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:15:53] "[35m[1mPOST /api/main/delete HTTP/1.0[0m" 500 -
+Traceback (most recent call last):
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2088, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.handle_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 528, in decorated_function
+    return f(user, *args, **kws)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 611, in main
+    out = naj_cleaning(user, aps)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 141, in naj_cleaning
+    lpd = min_dat + timedelta(days=1)
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'datetime.timedelta'
+209.141.56.41 - - [30/Jul/2021 08:17:02] "GET / HTTP/1.1" 200 -
+173.208.236.114 - - [30/Jul/2021 08:18:22] "[33mCONNECT icanhazip.com:443 HTTP/1.1[0m" 404 -
+ * Detected change in '/srv/www/apartmani.putovanja.net/api.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 123-644-551
+127.0.0.1 - - [30/Jul/2021 08:18:41] "[33mPOST /api/main/delete HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 08:18:48] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:18:48] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:18:55] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:18:55] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:18:56] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:18:59] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:18:59] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:18:59] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:09] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:09] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:09] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:12] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:12] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:13] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:18] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:18] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:18] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:30] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:30] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:31] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:34] "[35m[1mPOST /api/main/delete HTTP/1.0[0m" 500 -
+Traceback (most recent call last):
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2088, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.handle_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 528, in decorated_function
+    return f(user, *args, **kws)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 611, in main
+    out = naj_cleaning(user, aps)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 141, in naj_cleaning
+    lpd = min_dat + timedelta(days=1)
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'datetime.timedelta'
+127.0.0.1 - - [30/Jul/2021 08:19:43] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:19:43] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:20:01] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:20:01] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:20:01] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:20:05] "[35m[1mPOST /api/main/delete HTTP/1.0[0m" 500 -
+Traceback (most recent call last):
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2088, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.handle_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/srv/www/apartmani.putovanja.net/env3/lib/python3.6/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 528, in decorated_function
+    return f(user, *args, **kws)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 611, in main
+    out = naj_cleaning(user, aps)
+  File "/srv/www/apartmani.putovanja.net/api.py", line 141, in naj_cleaning
+    lpd = min_dat + timedelta(days=1)
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'datetime.timedelta'
+ * Detected change in '/srv/www/apartmani.putovanja.net/api.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 123-644-551
+127.0.0.1 - - [30/Jul/2021 08:22:52] "[33mPOST /api/main/delete HTTP/1.0[0m" 404 -
+127.0.0.1 - - [30/Jul/2021 08:22:55] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:22:56] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:01] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:01] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:01] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:04] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:04] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:05] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:07] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:08] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:08] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:14] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:14] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:14] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:18] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:18] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:19] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:25] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:25] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:26] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:29] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:29] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:29] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:34] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:34] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:34] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:43] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:43] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:44] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:48] "GET /api/calendar/range?id=44&start=2021-07-26&end=2021-08-01&rnd=831.8995843650785 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:56] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:58] "[31m[1mGET /api/main/load HTTP/1.0[0m" 401 -
+127.0.0.1 - - [30/Jul/2021 08:23:58] "GET /login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:23:58] "GET /login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:02] "POST /api/login HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:02] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:02] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:04] "GET /api/calendar/range?id=5&start=2021-07-26&end=2021-08-01&rnd=980.0797471510605 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:12] "POST /api/calendar/url HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:25] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:25] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:34] "GET /api/calendar/range?id=2&start=2021-07-26&end=2021-08-01&rnd=577.3827108313352 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:24:42] "GET /api/calendar/range?id=44&start=2021-07-26&end=2021-08-01&rnd=917.6681035109568 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:02] "POST /api/calendar/url HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:15] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:15] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:18] "GET /api/calendar/range?id=43&start=2021-07-26&end=2021-08-01&rnd=750.9245175060823 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:31] "POST /api/calendar/url HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:36] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:36] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:40] "GET /api/calendar/range?id=44&start=2021-07-26&end=2021-08-01&rnd=889.4376322463718 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:41] "GET /api/calendar/range?id=44&start=2021-07-19&end=2021-07-25&rnd=358.55075323568997 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:42] "GET /api/calendar/range?id=44&start=2021-07-12&end=2021-07-18&rnd=384.9211758674307 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:42] "GET /api/calendar/range?id=44&start=2021-07-05&end=2021-07-11&rnd=742.6080141892257 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:42] "GET /api/calendar/range?id=44&start=2021-06-28&end=2021-07-04&rnd=658.2102123968965 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:42] "GET /api/calendar/range?id=44&start=2021-06-21&end=2021-06-27&rnd=739.8664560097487 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:42] "GET /api/calendar/range?id=44&start=2021-06-14&end=2021-06-20&rnd=38.269771342266836 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:43] "GET /api/calendar/range?id=44&start=2021-06-07&end=2021-06-13&rnd=676.433098271538 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:43] "GET /api/calendar/range?id=44&start=2021-05-31&end=2021-06-06&rnd=296.7641274997101 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:43] "GET /api/calendar/range?id=44&start=2021-05-24&end=2021-05-30&rnd=548.8139887700232 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:43] "GET /api/calendar/range?id=44&start=2021-05-17&end=2021-05-23&rnd=46.82812675883552 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:43] "GET /api/calendar/range?id=44&start=2021-05-10&end=2021-05-16&rnd=314.7053527995576 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:43] "GET /api/calendar/range?id=44&start=2021-05-03&end=2021-05-09&rnd=347.6437346897225 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:44] "GET /api/calendar/range?id=44&start=2021-04-26&end=2021-05-02&rnd=409.9307510161145 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:44] "GET /api/calendar/range?id=44&start=2021-04-19&end=2021-04-25&rnd=845.7662949989315 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:44] "GET /api/calendar/range?id=44&start=2021-04-12&end=2021-04-18&rnd=718.7228237953253 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:44] "GET /api/calendar/range?id=44&start=2021-04-05&end=2021-04-11&rnd=99.05522602186511 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:44] "GET /api/calendar/range?id=44&start=2021-03-29&end=2021-04-04&rnd=747.6177298342575 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:45] "GET /api/calendar/range?id=44&start=2021-03-22&end=2021-03-28&rnd=258.9071860995786 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:45] "GET /api/calendar/range?id=44&start=2021-03-15&end=2021-03-21&rnd=482.38462505409797 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:45] "GET /api/calendar/range?id=44&start=2021-03-08&end=2021-03-14&rnd=196.9453149089042 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:45] "GET /api/calendar/range?id=44&start=2021-03-01&end=2021-03-07&rnd=28.349793674856016 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:45] "GET /api/calendar/range?id=44&start=2021-02-22&end=2021-02-28&rnd=685.247850732716 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:46] "GET /api/calendar/range?id=44&start=2021-02-15&end=2021-02-21&rnd=650.5795785374142 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:46] "GET /api/calendar/range?id=44&start=2021-02-08&end=2021-02-14&rnd=548.9901925513932 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:46] "GET /api/calendar/range?id=44&start=2021-02-01&end=2021-02-07&rnd=500.5316334504597 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:46] "GET /api/calendar/range?id=44&start=2021-01-25&end=2021-01-31&rnd=962.6769995551416 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:47] "GET /api/calendar/range?id=44&start=2021-01-18&end=2021-01-24&rnd=689.1603200926697 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:47] "GET /api/calendar/range?id=44&start=2021-01-11&end=2021-01-17&rnd=546.7101102260781 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:47] "GET /api/calendar/range?id=44&start=2021-01-04&end=2021-01-10&rnd=586.2315509196394 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:47] "GET /api/calendar/range?id=44&start=2020-12-28&end=2021-01-03&rnd=741.9292479924686 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:47] "GET /api/calendar/range?id=44&start=2020-12-21&end=2020-12-27&rnd=293.0963490873568 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:48] "GET /api/calendar/range?id=44&start=2020-12-14&end=2020-12-20&rnd=437.81191434258847 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:48] "GET /api/calendar/range?id=44&start=2020-12-07&end=2020-12-13&rnd=710.0173900244275 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:48] "GET /api/calendar/range?id=44&start=2020-11-30&end=2020-12-06&rnd=90.42201328388045 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:48] "GET /api/calendar/range?id=44&start=2020-11-23&end=2020-11-29&rnd=834.1378529658607 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:48] "GET /api/calendar/range?id=44&start=2020-11-16&end=2020-11-22&rnd=133.85091764854386 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:49] "GET /api/calendar/range?id=44&start=2020-11-09&end=2020-11-15&rnd=233.63158665824346 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:49] "GET /api/calendar/range?id=44&start=2020-11-02&end=2020-11-08&rnd=130.90052830003796 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:49] "GET /api/calendar/range?id=44&start=2020-10-26&end=2020-11-01&rnd=323.15567553391355 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:49] "GET /api/calendar/range?id=44&start=2020-10-19&end=2020-10-25&rnd=952.8936747374843 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:49] "GET /api/calendar/range?id=44&start=2020-10-12&end=2020-10-18&rnd=465.30816998845114 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:50] "GET /api/calendar/range?id=44&start=2020-10-05&end=2020-10-11&rnd=544.4442106205034 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:50] "GET /api/calendar/range?id=44&start=2020-09-28&end=2020-10-04&rnd=953.0855489497986 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:50] "GET /api/calendar/range?id=44&start=2020-09-21&end=2020-09-27&rnd=87.78124251182828 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:51] "GET /api/calendar/range?id=44&start=2020-09-14&end=2020-09-20&rnd=575.3316240391293 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:52] "GET /api/calendar/range?id=44&start=2020-09-21&end=2020-09-27&rnd=599.6716156158519 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:25:52] "GET /api/calendar/range?id=44&start=2020-09-28&end=2020-10-04&rnd=188.88225899429668 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:05] "POST /api/main/new HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:05] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:06] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:11] "GET /api/calendar/range?id=45&start=2021-07-26&end=2021-08-01&rnd=184.04118926023781 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:19] "POST /api/calendar/url HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:22] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:22] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:25] "GET /api/calendar/range?id=44&start=2021-07-26&end=2021-08-01&rnd=379.5415544720697 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:29] "POST /api/main/delete HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:29] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:30] "GET /api/main/load HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:32] "GET /api/calendar/range?id=44&start=2021-07-26&end=2021-08-01&rnd=532.0601436455905 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:33] "GET /api/calendar/range?id=44&start=2021-07-19&end=2021-07-25&rnd=173.72352008521608 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:33] "GET /api/calendar/range?id=44&start=2021-07-12&end=2021-07-18&rnd=483.4158269464082 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:33] "GET /api/calendar/range?id=44&start=2021-07-05&end=2021-07-11&rnd=673.1908302428346 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:34] "GET /api/calendar/range?id=44&start=2021-06-28&end=2021-07-04&rnd=280.03758944391086 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:35] "GET /api/calendar/range?id=44&start=2021-06-21&end=2021-06-27&rnd=388.26698461288436 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:35] "GET /api/calendar/range?id=44&start=2021-06-14&end=2021-06-20&rnd=307.43949598710117 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:35] "GET /api/calendar/range?id=44&start=2021-06-07&end=2021-06-13&rnd=596.3168989274146 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:35] "GET /api/calendar/range?id=44&start=2021-05-31&end=2021-06-06&rnd=662.2331736508926 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:35] "GET /api/calendar/range?id=44&start=2021-05-24&end=2021-05-30&rnd=512.9186745882513 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:35] "GET /api/calendar/range?id=44&start=2021-05-17&end=2021-05-23&rnd=437.236937302091 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:36] "GET /api/calendar/range?id=44&start=2021-05-10&end=2021-05-16&rnd=709.5690188112304 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:36] "GET /api/calendar/range?id=44&start=2021-05-03&end=2021-05-09&rnd=758.5195416589343 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:36] "GET /api/calendar/range?id=44&start=2021-04-26&end=2021-05-02&rnd=430.8436036880696 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:36] "GET /api/calendar/range?id=44&start=2021-04-19&end=2021-04-25&rnd=621.6148376841082 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:36] "GET /api/calendar/range?id=44&start=2021-04-12&end=2021-04-18&rnd=691.6420759642837 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:37] "GET /api/calendar/range?id=44&start=2021-04-05&end=2021-04-11&rnd=98.38202177131228 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:37] "GET /api/calendar/range?id=44&start=2021-03-29&end=2021-04-04&rnd=202.6905546721862 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:37] "GET /api/calendar/range?id=44&start=2021-03-22&end=2021-03-28&rnd=69.14308457520413 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:37] "GET /api/calendar/range?id=44&start=2021-03-15&end=2021-03-21&rnd=721.8830113371932 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:37] "GET /api/calendar/range?id=44&start=2021-03-08&end=2021-03-14&rnd=651.3863875281471 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:38] "GET /api/calendar/range?id=44&start=2021-03-01&end=2021-03-07&rnd=784.106712190192 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:38] "GET /api/calendar/range?id=44&start=2021-02-22&end=2021-02-28&rnd=856.532777310305 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:38] "GET /api/calendar/range?id=44&start=2021-02-15&end=2021-02-21&rnd=803.3963285086307 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:38] "GET /api/calendar/range?id=44&start=2021-02-08&end=2021-02-14&rnd=172.58861416500704 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:38] "GET /api/calendar/range?id=44&start=2021-02-01&end=2021-02-07&rnd=583.453948072772 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:38] "GET /api/calendar/range?id=44&start=2021-01-25&end=2021-01-31&rnd=399.21186829653067 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:39] "GET /api/calendar/range?id=44&start=2021-01-18&end=2021-01-24&rnd=467.8784034497023 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:39] "GET /api/calendar/range?id=44&start=2021-01-11&end=2021-01-17&rnd=59.16394238198852 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:39] "GET /api/calendar/range?id=44&start=2021-01-04&end=2021-01-10&rnd=162.1691367480045 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:39] "GET /api/calendar/range?id=44&start=2020-12-28&end=2021-01-03&rnd=380.14665617070364 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:39] "GET /api/calendar/range?id=44&start=2020-12-21&end=2020-12-27&rnd=124.47349310965406 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:39] "GET /api/calendar/range?id=44&start=2020-12-14&end=2020-12-20&rnd=976.4544402512485 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:40] "GET /api/calendar/range?id=44&start=2020-12-07&end=2020-12-13&rnd=820.2058336990268 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:40] "GET /api/calendar/range?id=44&start=2020-11-30&end=2020-12-06&rnd=346.1082506027089 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:40] "GET /api/calendar/range?id=44&start=2020-11-23&end=2020-11-29&rnd=819.6871693740959 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:40] "GET /api/calendar/range?id=44&start=2020-11-16&end=2020-11-22&rnd=424.9174471673245 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:40] "GET /api/calendar/range?id=44&start=2020-11-09&end=2020-11-15&rnd=592.9268798103615 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:41] "GET /api/calendar/range?id=44&start=2020-11-02&end=2020-11-08&rnd=880.1273230293847 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:41] "GET /api/calendar/range?id=44&start=2020-10-26&end=2020-11-01&rnd=801.9308726386809 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:41] "GET /api/calendar/range?id=44&start=2020-10-19&end=2020-10-25&rnd=429.26028463858734 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:41] "GET /api/calendar/range?id=44&start=2020-10-12&end=2020-10-18&rnd=683.2853622123425 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:41] "GET /api/calendar/range?id=44&start=2020-10-05&end=2020-10-11&rnd=708.3867147293847 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:42] "GET /api/calendar/range?id=44&start=2020-09-28&end=2020-10-04&rnd=460.25436295924635 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:42] "GET /api/calendar/range?id=44&start=2020-09-21&end=2020-09-27&rnd=254.95749796285884 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:42] "GET /api/calendar/range?id=44&start=2020-09-14&end=2020-09-20&rnd=385.90971676830435 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:43] "GET /api/calendar/range?id=44&start=2020-09-21&end=2020-09-27&rnd=510.2935587867079 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:44] "GET /api/calendar/range?id=44&start=2020-09-28&end=2020-10-04&rnd=798.375507835357 HTTP/1.0" 200 -
+127.0.0.1 - - [30/Jul/2021 08:26:45] "GET /api/calendar/range?id=44&start=2020-10-05&end=2020-10-11&rnd=389.60089417385336 HTTP/1.0" 200 -
