@@ -10,7 +10,7 @@
    * pod / su stranice /login /register (i /) koje su praktički samo 
      html-ovi iz kojih se poslje AJAX-om učitavaju podaci.
 
-+ pomoćna skripta ./cron.sh: služi ra refresh podataka s URL-ova.
++ pomoćna skripta ./cron.sh: služi za refresh podataka s URL-ova.
 
 
 
